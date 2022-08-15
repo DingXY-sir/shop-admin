@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-12 13:36:43
+ * @LastEditTime: 2022-08-15 10:00:10
 -->
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
@@ -24,9 +24,13 @@ const iptChange = () => {
   <HelloWorld msg="Vite + Vue" />
   <input type="text" v-model="iptVal" />
   <button @click="iptChange">修改</button>
+  <div style="width: 200px; height: 110px" class="flx-center">
+    <div style="width: 100px; height: 110px; background-color: red"></div>
+    <div style="width: 100px; height: 110px; background-color: green"></div>
+  </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .logo {
   height: 6em;
   padding: 1.5em;
