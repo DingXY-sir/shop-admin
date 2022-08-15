@@ -12,8 +12,9 @@ export interface ResultData<T> extends Result {
 // * 登陆模块
 export namespace Login {
   export interface ReqLoginForm {
-    username: string;
-    password:number
+    phone: string | number,
+    password: string | number,
+    code : number | null
   }
   export interface ResLogin {
     access_token:string

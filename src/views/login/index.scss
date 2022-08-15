@@ -1,0 +1,32 @@
+.container{
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/images/login_bg.svg');
+  background-position: 50%;
+  background-size: cover;
+  background-color: #eeeeee;
+  overflow: hidden;
+  .login-box{
+    box-sizing: border-box;
+    width: 96%;
+    height: 94%;
+    background-color: #fffc;
+    border-radius: 10px;
+    margin:2% auto;
+    .login-left{
+      width: 800px;
+    }
+    .login-right{
+      width: 420px;
+      padding: 50px 40px 45px;
+      border-radius: 10px;
+      box-shadow: 2px 3px 7px #0003;
+      ::v-deep .el-form-item__label{
+        width: 100px;
+      }
+      h3{
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
