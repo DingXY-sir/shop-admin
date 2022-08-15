@@ -1,0 +1,23 @@
+.container {
+  height: 100%;
+  .not-found{
+    width: 423px;
+    height: 341px;
+    background-image: url('@/assets/images/404.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-right: 120px;
+  }
+  .not-found-font{
+    h2{
+      font-size: 60px;
+      color: #434e59;
+    }
+    p{
+      margin: 30px 0 20px;
+      font-size: 19px;
+      font-weight: 400;
+      color: #848587;
+    }
+  }
+}
