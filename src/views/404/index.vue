@@ -15,6 +15,7 @@
 import { ref, reactive, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
+//跳转首页权限判断
 </script>
 <style lang="scss" scoped>
 @import "./index.scss";
