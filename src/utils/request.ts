@@ -3,15 +3,16 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 13:47:55
+ * @LastEditTime: 2022-08-16 16:12:55
  */
 import axios,{AxiosInstance,AxiosRequestConfig,AxiosResponse,AxiosError} from "axios"
-import {ResultData} from "@/api/interface/index"
+import { ResultData } from "@/api/interface/index"
+import {useUserStore} from "@/store/user"
 const config = {
-  baseUrl: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout:6000,
   // 跨域时候允许携带凭证
-	withCredentials: true
+	// withCredentials: true
 }
 
 class RequestHttp {
@@ -22,6 +23,8 @@ class RequestHttp {
     // 添加请求拦截器
     this.service.interceptors.request.use( (config:AxiosRequestConfig) => {
       // 在发送请求之前做些什么
+      const userStore = useUserStore()
+      console.log(config)
       return config;
     },  (error:AxiosError) => {
       // 对请求错误做些什么
