@@ -3,11 +3,23 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-12 13:54:34
+ * @LastEditTime: 2022-08-16 09:23:33
  */
-import { createRouter,RouteRecordRaw,createWebHistory } from "vue-router"
+import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router"
+import Layout from "@/layout/index.vue"
 
 const routes: RouteRecordRaw[] = [
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "",
+        name: "home",
+        component:() => import("@/views/home/index.vue")
+      }
+    ]
+  },
   {
     path: "/login",
     name: "login",

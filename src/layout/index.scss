@@ -1,0 +1,70 @@
+.container{
+  .el-container{
+    height: 100vh;
+    .el-aside{
+      .container{
+        height: 100vh;
+        background-color: $menuBgColor;
+        ::v-deep .el-menu{border-right: none !important;}
+        ::v-deep .el-menu,.el-menu--popup {
+          .el-menu-item{
+            &.is-active{
+              color:$menuActiveColor ;
+              background:$menuBgHoverColor !important;
+              &::before{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                left: 0;
+                width: 4px;
+                content: "";
+                background-color: $menuActiveBorderColor;
+              }
+            }
+          }
+          
+          .el-menu-item:hover,.el-sub-menu__title:hover{
+            background-color: $menuBgHoverColor !important;
+          }
+        }
+      }
+    }
+    .el-container {
+      .el-header{
+        border-bottom: 1px solid #f6f6f6;
+      }
+    }
+    .el-main{
+      box-sizing: border-box;
+      padding: 10px 13px;
+      /* 防止切换出现横向滚动条 */
+      overflow-x: hidden;
+      background: #f0f2f5;
+      .main-box {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        overflow: auto;
+        overflow-x: hidden !important;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+        &::-webkit-scrollbar {
+          background-color: white;
+        }
+      }
+    }
+    .el-footer{
+      height: 30px;
+      line-height: 30px;
+      .container{
+        text-align: center;
+        height: 30px;
+        font-size: 14px;
+        color: #858585;
+      }
+    }
+  }
+}
