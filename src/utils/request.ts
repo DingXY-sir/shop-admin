@@ -1,7 +1,14 @@
+/*
+ * @Descripttion: 
+ * @Author: DXY
+ * @Date: 2022-08-15 10:19:49
+ * @LastEditors: DXY
+ * @LastEditTime: 2022-08-16 13:47:55
+ */
 import axios,{AxiosInstance,AxiosRequestConfig,AxiosResponse,AxiosError} from "axios"
 import {ResultData} from "@/api/interface/index"
 const config = {
-  baseUrl: "",
+  baseUrl: import.meta.env.VITE_API_BASE_URL,
   timeout:6000,
   // 跨域时候允许携带凭证
 	withCredentials: true
