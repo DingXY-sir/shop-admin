@@ -3,10 +3,11 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 09:23:33
+ * @LastEditTime: 2022-08-17 09:09:09
  */
 import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router"
 import Layout from "@/layout/index.vue"
+import {start , end} from "@/utils/nprogress"
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,6 +17,9 @@ const routes: RouteRecordRaw[] = [
       {
         path: "",
         name: "home",
+        meta: {
+          title:"首页"
+        },
         component:() => import("@/views/home/index.vue")
       }
     ]
@@ -35,6 +39,14 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   history:createWebHistory(),
   routes
+})
+
+router.beforeEach(() => {
+  start()
+})
+
+router.afterEach(() => {
+  end()
 })
 
 export default router
