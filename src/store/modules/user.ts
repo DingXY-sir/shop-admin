@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-16 14:01:08
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 10:36:31
+ * @LastEditTime: 2022-08-18 14:20:11
  */
 import { defineStore } from "pinia"
-import {HeaderData} from "@/api/interface/index"
+import {HeaderData,Login} from "@/api/interface/index"
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -14,12 +14,19 @@ export const useUserStore = defineStore('user', {
       userToken: {
         access_token: "",
         jti: "",
+      },
+      user: {
+        username: "",
+        
       }
     }
   },
   actions: {
     setUserToken(data:HeaderData) {
       this.userToken = {...data}
+    },
+    setUserInfo(data:Login.IResGetLogin['username']) {
+      this.user.username = data
     }
   },
   //开启数据缓存

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 10:33:48
+ * @LastEditTime: 2022-08-18 14:45:33
 -->
 <template>
   <div class="login-form-container">
@@ -107,6 +107,7 @@ const loginHandle = (formEl: FormInstance | undefined) => {
         access_token: resLogin.data.data.access_token,
         jti: resLogin.data.data.jti,
       });
+      userStore.setUserInfo(resLogin.data.data.username);
       ElMessage.success("登录成功！");
       router.push({ name: "home" });
     } finally {

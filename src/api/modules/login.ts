@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 用户登陆API
+ * @Author: DXY
+ * @Date: 2022-08-15 11:26:49
+ * @LastEditors: DXY
+ * @LastEditTime: 2022-08-18 15:00:05
+ */
 import {Login} from "@/api/interface/index"
 import http from "@/utils/request"
 import qs from "qs"
@@ -17,4 +24,7 @@ export const getRoleId = (params:Login.IRoleId) => {
 }
 export const getLogin = (params:Login.IReqLogin) => {
   return http.post<Login.IResGetLogin>("/userLogin",qs.stringify(params))
+}
+export const logOut = () => {
+  return http.post("/userLogout")
 }
