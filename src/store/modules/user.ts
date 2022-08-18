@@ -1,9 +1,9 @@
 /*
- * @Descripttion: 
+ * @Descripttion: 用户仓库
  * @Author: DXY
  * @Date: 2022-08-16 14:01:08
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 14:15:12
+ * @LastEditTime: 2022-08-18 10:36:31
  */
 import { defineStore } from "pinia"
 import {HeaderData} from "@/api/interface/index"

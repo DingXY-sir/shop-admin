@@ -3,12 +3,12 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-17 17:49:48
+ * @LastEditTime: 2022-08-18 10:33:51
  */
 import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router"
 import Layout from "@/layout/index.vue"
 import { start, end } from "@/utils/nprogress"
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/modules/user";
 
 const routes: RouteRecordRaw[] = [
   {

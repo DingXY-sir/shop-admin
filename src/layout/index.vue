@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:36:34
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 10:19:24
+ * @LastEditTime: 2022-08-18 13:46:49
 -->
 <template>
   <div class="container">
@@ -25,9 +25,9 @@
 </template>
 
 <script setup lang="ts">
-import ComMenu from "./components/Menu.vue";
-import ComHeader from "./components/Header.vue";
-import ComFooter from "./components/Footer.vue";
+import ComMenu from "./components/Menu/index.vue";
+import ComHeader from "./components/Header/index.vue";
+import ComFooter from "./components/Footer/index.vue";
 
 import { ref, reactive, computed, watch } from "vue";
 </script>

@@ -3,11 +3,11 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 09:56:10
+ * @LastEditTime: 2022-08-18 10:33:49
  */
 import axios,{AxiosInstance,AxiosRequestConfig,AxiosResponse,AxiosError} from "axios"
 import { ResultData } from "@/api/interface/index"
-import { useUserStore } from "@/store/user"
+import { useUserStore } from "@/store/modules/user"
 import {ElMessage} from "element-plus"
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL,

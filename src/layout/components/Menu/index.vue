@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 12:22:54
+ * @LastEditTime: 2022-08-18 14:04:52
 -->
 <template>
   <div class="container">
@@ -45,13 +45,10 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from "vue";
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from "@element-plus/icons-vue";
-const isCollapse = ref(false);
+import { Menu as IconMenu } from "@element-plus/icons-vue";
+import { useMenuStore } from "@/store/modules/menu";
+const menuStore = useMenuStore();
+const isCollapse = computed((): boolean => menuStore.isCollapse);
 const activeMenu = ref("2");
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
@@ -60,4 +57,12 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  transition: all 0.4s ease;
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+}
+</style>

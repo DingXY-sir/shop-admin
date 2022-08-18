@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 09:56:32
+ * @LastEditTime: 2022-08-18 10:33:48
 -->
 <template>
   <div class="login-form-container">
@@ -52,7 +52,7 @@ import { Unlock, User } from "@element-plus/icons-vue";
 import { Login } from "@/api/interface/index";
 import { getCode, getUserAuth, getRoleId, getLogin } from "@/api/modules/login";
 import { Md5 } from "ts-md5";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/modules/user";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
 //FormInstance 获取表单实例类型
