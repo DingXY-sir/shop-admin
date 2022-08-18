@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 16:51:46
+ * @LastEditTime: 2022-08-18 09:56:32
 -->
 <template>
   <div class="login-form-container">
@@ -48,11 +48,13 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onMounted } from "vue";
 import type { ElForm } from "element-plus";
-import { Login } from "@/api/interface/index";
-import { useRouter } from "vue-router";
 import { Unlock, User } from "@element-plus/icons-vue";
-import { getCode } from "@/api/modules/login";
-
+import { Login } from "@/api/interface/index";
+import { getCode, getUserAuth, getRoleId, getLogin } from "@/api/modules/login";
+import { Md5 } from "ts-md5";
+import { useUserStore } from "@/store/user";
+import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
 //FormInstance 获取表单实例类型
 type FormInstance = InstanceType<typeof ElForm>;
 const formRef = ref<FormInstance>();
@@ -71,7 +73,6 @@ const loginForm = reactive<Login.ReqLoginForm>({
 //验证码
 const getCodeHandle = async () => {
   const { data } = await getCode();
-  console.log(data);
   loginForm.imgCode = "data:image/png;base64," + data;
 };
 const updateCode = () => {
@@ -80,14 +81,34 @@ const updateCode = () => {
 
 //登陆表单
 const loading = ref<boolean>(false);
+const router = useRouter();
 const loginHandle = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (!valid) return;
     loading.value = true;
     try {
       //登陆逻辑
-      console.log("submit");
+      const params = {
+        ...loginForm,
+        type: 0,
+        password: Md5.hashStr(loginForm.password),
+      };
+      const res = await getUserAuth(params);
+      const { roleId, userId } = res?.data?.data[0];
+      const resRoleId = await getRoleId({ roleId, userId });
+      const resLogin = await getLogin({
+        ...loginForm,
+        password: Md5.hashStr(loginForm.password),
+      });
+      //使用pinia储存token、jti
+      const userStore = useUserStore();
+      userStore.setUserToken({
+        access_token: resLogin.data.data.access_token,
+        jti: resLogin.data.data.jti,
+      });
+      ElMessage.success("登录成功！");
+      router.push({ name: "home" });
     } finally {
       loading.value = false;
     }
@@ -95,7 +116,9 @@ const loginHandle = (formEl: FormInstance | undefined) => {
 };
 
 //重置表单
-const resetForm = (formEl: FormInstance | undefined) => {};
+const resetForm = (formEl: FormInstance | undefined) => {
+  // ElMessage.error("nihao");
+};
 
 onMounted(() => {
   getCodeHandle();

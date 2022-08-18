@@ -1,7 +1,14 @@
+<!--
+ * @Descripttion: 
+ * @Author: DXY
+ * @Date: 2022-08-15 13:53:50
+ * @LastEditors: DXY
+ * @LastEditTime: 2022-08-18 09:42:22
+-->
 <template>
   <div class="container">
     <div class="login-box flx-center">
-      <div class="flx-center">
+      <div class="login-content flx-justify-around">
         <div>
           <img
             class="login-left"

@@ -18,8 +18,18 @@ export const useUserStore = defineStore('user', {
     }
   },
   actions: {
-    updateUserToken(data:HeaderData) {
+    setUserToken(data:HeaderData) {
       this.userToken = {...data}
     }
+  },
+  //开启数据缓存
+  persist: {
+    enabled: true,
+    //自定义key
+    strategies: [
+      {
+        storage:localStorage
+      }
+    ]
   }
 })

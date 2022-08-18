@@ -3,11 +3,12 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-17 09:09:09
+ * @LastEditTime: 2022-08-17 17:49:48
  */
 import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router"
 import Layout from "@/layout/index.vue"
-import {start , end} from "@/utils/nprogress"
+import { start, end } from "@/utils/nprogress"
+import { useUserStore } from "@/store/user";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -41,8 +42,12 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(() => {
+router.beforeEach((to,from) => {
   start()
+  const userStore = useUserStore();
+  if (!userStore.userToken.access_token && to.name !=="login") {
+    return {name: "login"}
+  }
 })
 
 router.afterEach(() => {
