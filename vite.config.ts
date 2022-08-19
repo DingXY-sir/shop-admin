@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 16:13:05
+ * @LastEditTime: 2022-08-19 17:50:12
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -33,12 +33,4 @@ export default defineConfig({
       }
     }
   },
-  // server: {
-  //   proxy: {
-  //     "/api": {
-  //       target: 'http://manage.zk-intelligent.cn/',
-  //       changeOrigin: true,
-  //     }
-  //   }
-  // }
 })
