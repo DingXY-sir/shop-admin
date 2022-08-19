@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 14:45:33
+ * @LastEditTime: 2022-08-19 11:26:05
 -->
 <template>
   <div class="login-form-container">
@@ -54,7 +54,7 @@ import { getCode, getUserAuth, getRoleId, getLogin } from "@/api/modules/login";
 import { Md5 } from "ts-md5";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessage } from "element-plus";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 //FormInstance 获取表单实例类型
 type FormInstance = InstanceType<typeof ElForm>;
 const formRef = ref<FormInstance>();
@@ -82,6 +82,7 @@ const updateCode = () => {
 //登陆表单
 const loading = ref<boolean>(false);
 const router = useRouter();
+const route = useRoute();
 const loginHandle = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate(async (valid) => {
@@ -109,7 +110,12 @@ const loginHandle = (formEl: FormInstance | undefined) => {
       });
       userStore.setUserInfo(resLogin.data.data.username);
       ElMessage.success("登录成功！");
-      router.push({ name: "home" });
+      //通过路由拦截记录未登录时跳转的地址
+      let redirect = route.query.redirect || "/";
+      if (typeof redirect !== "string") {
+        redirect = "/";
+      }
+      router.replace(redirect);
     } finally {
       loading.value = false;
     }
