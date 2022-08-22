@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 15:22:02
+ * @LastEditTime: 2022-08-22 14:24:03
 -->
 <template>
   <div class="container flx-items-center">
@@ -29,7 +29,7 @@
 import { ref, reactive, computed, watch } from "vue";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessageBox } from "element-plus";
-const avatar = new URL("../../../assets/images/avatar.gif", import.meta.url)
+const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url)
   .href;
 const userStore = useUserStore();
 const userName = computed((): string => userStore.user.username);

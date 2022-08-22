@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 13:49:04
+ * @LastEditTime: 2022-08-22 14:37:22
 -->
 <template>
   <div class="container">
@@ -34,15 +34,29 @@ const activeMenu = computed((): string => route.path);
 //模拟导航接口数据
 const menuData = ref([
   { icon: "home-filled", path: "/home/index", title: "首页" },
-  { icon: "goods-filled", path: "/goods", title: "商品管理" },
-  { icon: "user-filled", path: "/user", title: "用户管理" },
+  {
+    icon: "goods-filled",
+    path: "/goods",
+    title: "商品管理",
+    children: [{ icon: "home-filled", path: "/goods/list", title: "商品列表" }],
+  },
+  {
+    icon: "user-filled",
+    path: "/user",
+    title: "用户管理",
+    children: [{ icon: "goods-filled", path: "/user/list", title: "用户列表" }],
+  },
   {
     icon: "avatar",
-    path: "",
+    path: "/authority",
     title: "权限管理",
     children: [
-      { icon: "circle-plus-filled", path: "/authority", title: "权限列表" },
-      { icon: "help-filled", path: "/role", title: "角色管理" },
+      {
+        icon: "circle-plus-filled",
+        path: "/authority/auth",
+        title: "权限列表",
+      },
+      { icon: "help-filled", path: "/authority/role", title: "角色管理" },
     ],
   },
 ]);
