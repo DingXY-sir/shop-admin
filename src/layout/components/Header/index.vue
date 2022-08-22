@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 14:54:52
+ * @LastEditTime: 2022-08-22 16:46:42
 -->
 <template>
-  <div class="container flx-justify-between">
+  <div class="container flx-justify-between" style="padding: 0 15px">
     <div class="flx-center">
       <collapse-icon />
       <breadcrumb />
@@ -27,9 +27,8 @@ import { ref, reactive, computed, watch } from "vue";
 </script>
 <style lang="scss" scoped>
 .container {
-  div {
-    height: 100%;
-  }
+  height: 60px;
+  border-bottom: 1px solid $tagsBorderColor;
   .fn {
     width: 160px;
   }

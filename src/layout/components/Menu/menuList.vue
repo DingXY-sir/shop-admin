@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:00:31
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 11:30:57
+ * @LastEditTime: 2022-08-22 16:08:48
 -->
 <template>
   <template v-for="menuItem in menuList" :key="menuItem.path">
@@ -19,7 +19,7 @@
       </template>
       <menu-list :menuList="menuItem.children" />
     </el-sub-menu>
-    <el-menu-item v-else :index="menuItem.path">
+    <el-menu-item v-else :index="menuItem.path" @click="tagHandle(menuItem)">
       <el-icon>
         <component :is="menuItem.icon"></component>
       </el-icon>
@@ -31,6 +31,14 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from "vue";
 import { MenuOptions } from "@/api/interface/index";
+import { useTagsStore } from "@/store/modules/tags";
 defineProps<{ menuList: Array<MenuOptions> }>();
+
+const tagsStore = useTagsStore();
+const tagHandle = (item: MenuOptions) => {
+  const { path, title } = item;
+  let tagItem = { path, title };
+  tagsStore.addTagsList(tagItem);
+};
 </script>
 <style lang="scss" scoped></style>
