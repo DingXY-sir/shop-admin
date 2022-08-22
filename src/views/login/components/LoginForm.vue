@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-19 11:26:05
+ * @LastEditTime: 2022-08-22 09:15:43
 -->
 <template>
   <div class="login-form-container">
@@ -111,9 +111,9 @@ const loginHandle = (formEl: FormInstance | undefined) => {
       userStore.setUserInfo(resLogin.data.data.username);
       ElMessage.success("登录成功！");
       //通过路由拦截记录未登录时跳转的地址
-      let redirect = route.query.redirect || "/";
+      let redirect = route.query.redirect || "/home";
       if (typeof redirect !== "string") {
-        redirect = "/";
+        redirect = "/home";
       }
       router.replace(redirect);
     } finally {

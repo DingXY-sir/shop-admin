@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:58:06
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-16 16:45:20
+ * @LastEditTime: 2022-08-22 10:50:11
  */
 // * 请求响应参数（不包含data）
 export interface Result {
@@ -64,4 +64,11 @@ export namespace Login {
     username: string,
 
   }
+}
+
+export interface MenuOptions {
+  path: string;
+  title: string;
+  icon?: string;
+  children?: MenuOptions[];
 }

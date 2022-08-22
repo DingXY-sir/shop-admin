@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 14:04:52
+ * @LastEditTime: 2022-08-22 13:49:04
 -->
 <template>
   <div class="container">
@@ -14,48 +14,39 @@
       active-text-color="#fff"
       text-color="#bdbdc0"
       background-color="#191a20"
-      @open="handleOpen"
-      @close="handleClose"
+      router
     >
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <template #title>Navigator Two</template>
-      </el-menu-item>
+      <sub-menu :menuList="menuData" />
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from "vue";
-import { Menu as IconMenu } from "@element-plus/icons-vue";
 import { useMenuStore } from "@/store/modules/menu";
+import subMenu from "./menuList.vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
 const menuStore = useMenuStore();
 const isCollapse = computed((): boolean => menuStore.isCollapse);
-const activeMenu = ref("2");
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+const activeMenu = computed((): string => route.path);
+
+//模拟导航接口数据
+const menuData = ref([
+  { icon: "home-filled", path: "/home/index", title: "首页" },
+  { icon: "goods-filled", path: "/goods", title: "商品管理" },
+  { icon: "user-filled", path: "/user", title: "用户管理" },
+  {
+    icon: "avatar",
+    path: "",
+    title: "权限管理",
+    children: [
+      { icon: "circle-plus-filled", path: "/authority", title: "权限列表" },
+      { icon: "help-filled", path: "/role", title: "角色管理" },
+    ],
+  },
+]);
+menuStore.setMenuList(menuData.value);
 </script>
 <style lang="scss" scoped>
 .container {
