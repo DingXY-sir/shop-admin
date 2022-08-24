@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 15:17:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 16:58:36
+ * @LastEditTime: 2022-08-24 16:18:48
  */
 import { defineStore } from "pinia";
 import {TagItem} from "@/types/tags" 
@@ -30,7 +30,7 @@ export const useTagsStore = defineStore("tags", {
     strategies: [
       {
         key:"tags",
-        storage:localStorage
+        storage:sessionStorage
       }
     ]
   }
