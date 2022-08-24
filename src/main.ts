@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 15:56:34
+ * @LastEditTime: 2022-08-24 13:44:15
  */
 import { createApp } from 'vue'
 import "@/styles/index.scss"

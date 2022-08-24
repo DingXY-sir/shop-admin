@@ -24,7 +24,7 @@
       padding: 50px 40px 45px;
       border-radius: 10px;
       box-shadow: 2px 3px 7px #0003;
-      ::v-deep .el-form-item__label{
+      :deep(.el-form-item__label){
         width: 100px;
       }
       h3{

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 09:15:43
+ * @LastEditTime: 2022-08-24 15:39:39
 -->
 <template>
   <div class="login-form-container">
@@ -139,7 +139,7 @@ onMounted(() => {
 });
 </script>
 <style lang="scss" scoped>
-::v-deep .el-form-item__content {
+:deep(.el-form-item__content) {
   display: block !important;
 }
 .code_ipt {

@@ -6,8 +6,8 @@
       .container{
         height: 100vh;
         background-color: $menuBgColor;
-        ::v-deep .el-menu{border-right: none !important;}
-        ::v-deep .el-menu,.el-menu--popup {
+        :deep(.el-menu){border-right: none !important;}
+        :deep(.el-menu,.el-menu--popup) {
           .el-menu-item{
             &.is-active{
               color:$menuActiveColor ;
