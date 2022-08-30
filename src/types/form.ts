@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 11:48:50
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-24 14:14:55
+ * @LastEditTime: 2022-08-30 11:08:16
  */
 export namespace Form {
   export interface EnumProp{
@@ -13,7 +13,7 @@ export namespace Form {
     children?:EnumProp[] //为树形选择时，可以通过 children 属性指定子选项
   }
   export type SearchItemType =
-	| "text"
+	 "text"
 	| "select"
 	| "multipleSelect"
 	| "treeSelect"
@@ -24,14 +24,21 @@ export namespace Form {
     | "datetimerange";
   export type FixedProp = "left" | "right"
   export interface SearchFormItem{
+    type:"index" | "selection" | "expand";
     searchType: string; //类型
     label: string; //名称
-    prop: string; //后端输入内容字段
+    prop: string | number; //后端输入内容字段;
+    sortable: boolean;//对应列是否可以排序
     width: number | string; //列宽
     minWidth: number | string;//最小列宽
     tag: boolean;//是否为标签展示
     fixed: FixedProp; //固定列
     isShow: boolean; //是否在表格中展示
     enum: EnumProp;
+  }
+  export interface Pageable{
+    page: number;
+    limit: number;
+    total:number
   }
 }

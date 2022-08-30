@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 10:29:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-24 16:04:11
+ * @LastEditTime: 2022-08-30 09:16:01
 -->
 <template>
   <div class="table-search-container">
@@ -56,10 +56,10 @@ import { Form } from "@/types/form";
 
 interface ProTableProps {
   searchParam: any; //表单参数
-  getSearchList: Partial<Form.SearchFormItem>[];
+  getSearchList: Partial<Form.SearchFormItem>[]; //查询表单数组数据
 }
 const prop = withDefaults(defineProps<ProTableProps>(), {
-  searchParam: {},
+  searchParam: () => {},
   getSearchList: () => [],
 });
 
