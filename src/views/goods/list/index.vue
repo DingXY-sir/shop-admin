@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 17:08:10
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-30 12:27:37
+ * @LastEditTime: 2022-08-31 17:03:20
 -->
 <template>
   <div class="container">
@@ -13,6 +13,7 @@
       :searchParam="searchParam"
       :getSearchList="getSearchList"
       :page="page"
+      :border="border"
     >
       <template #tableHeader="scope">
         <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
@@ -43,11 +44,7 @@
         />
       </template>
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          :icon="View"
-          @click="openDrawer('查看', scope.row)"
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)"
           >查看</el-button
         >
         <el-button
@@ -57,26 +54,26 @@
           @click="openDrawer('编辑', scope.row)"
           >编辑</el-button
         >
-        <el-button
-          type="primary"
-          link
-          :icon="Refresh"
-          @click="resetPass(scope.row)"
+        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)"
           >重置密码</el-button
         >
-        <el-button
-          type="primary"
-          link
-          :icon="Delete"
-          @click="deleteAccount(scope.row)"
+        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"
           >删除</el-button
         >
       </template>
     </pro-table>
+    <card
+      v-model="isDialogShow"
+      v-model:adminId="adminId"
+      :titleName="titleName"
+      :isView="isView"
+      @success="handleSubmit"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import Card from "./components/card.vue";
 import { ref, reactive, computed, watch } from "vue";
 import {
   View,
@@ -87,8 +84,10 @@ import {
   Download,
   Upload,
 } from "@element-plus/icons-vue";
-import { Form } from "@/types/form";
+import type { Form } from "@/types/form";
+import type { TableData } from "./index";
 const searchParam = reactive({}); //查询表单字段
+//条件查询表单
 const getSearchList = ref([
   {
     searchType: "text",
@@ -127,26 +126,31 @@ const getSearchList = ref([
     isShow: true,
   },
 ]);
-const tableData = ref([
+//表单数据
+const tableData = ref<Array<TableData>>([
   {
+    id: 1,
     gender: "1",
     idCard: "130626100112910011",
     status: "0",
     createTime: "2022-08-29 15:02:45",
   },
   {
+    id: 2,
     gender: "1",
     idCard: "130626100112910011",
     status: "1",
     createTime: "2022-08-29 15:02:05",
   },
   {
+    id: 3,
     gender: "1",
     idCard: "130626100112910011",
     status: "1",
     createTime: "2022-08-29 15:02:05",
   },
 ]);
+//表头字段以及配置
 const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
   { type: "selection", width: 80, fixed: "left" },
   // { type: "expand", label: "Expand", width: 100 },
@@ -154,20 +158,27 @@ const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
   // // 😄 enum 可以直接是数组对象，也可以是请求方法(proTable 内部会执行获取 enum 的这个方法)，下面用户状态也同理
   // // 😄 enum 为请求方法时，后台返回的数组对象 key 值不是 label 和 value 的情况，可以在 searchProps 中指定 label 和 value 的 key 值
   {
+    prop: "id",
+    label: "ID",
+    width: 100,
+    searchType: "text",
+  },
+  {
     prop: "gender",
     label: "性别",
     width: 120,
     sortable: true,
     searchType: "select",
   },
-  { prop: "idCard", label: "身份证号" },
-  { prop: "email", label: "邮箱" },
-  { prop: "address", label: "居住地址" },
+  { prop: "idCard", label: "身份证号", width: 200 },
+  { prop: "email", label: "邮箱", width: 200 },
+  { prop: "address", label: "居住地址", width: 200 },
   {
     prop: "status",
     label: "用户状态",
     sortable: true,
     searchType: "select",
+    width: 140,
   },
   {
     prop: "createTime",
@@ -187,17 +198,38 @@ const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
     fixed: "right",
   },
 ]);
+// 分页配置
 const page = reactive<Form.Pageable>({
   page: 1,
   limit: 10,
   total: 0,
 });
+const border = ref(true);
+const titleName = ref<string>("用户");
+// Dialog操作
+const isDialogShow = ref(false);
+const adminId = ref<number | null>(null);
+const isView = ref(false);
 // 表单增删改查
 const batchAdd = () => {};
 const downloadFile = () => {};
 const batchDelete = () => {};
 // 表单操作
-const openDrawer = (name: string, row?: any) => {};
+const openDrawer = (name: string, row?: any) => {
+  if (name === "新增") {
+    isDialogShow.value = true;
+  }
+  if (name === "编辑") {
+    isDialogShow.value = true;
+    adminId.value = row.id;
+  }
+  if (name === "查看") {
+    isView.value = true;
+  }
+};
+const handleSubmit = () => {
+  isDialogShow.value = false;
+};
 const resetPass = (row: any) => {};
 const deleteAccount = (row: any) => {};
 </script>
