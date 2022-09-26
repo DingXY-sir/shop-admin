@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-25 09:11:37
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-31 14:08:52
+ * @LastEditTime: 2022-09-02 11:42:18
 -->
 <template>
   <el-pagination
@@ -25,7 +25,7 @@ interface PropsType {
   page: number;
   limit: number;
   total: number;
-  getList: () => void;
+  getList: () => Promise<void>;
 }
 interface EmitsType {
   (e: "update:page", value: number): void;
@@ -35,7 +35,7 @@ const prop = withDefaults(defineProps<PropsType>(), {
   page: 1,
   limit: 10,
   total: 0,
-  getList: () => {},
+  getList: () => Promise.resolve(),
 });
 
 const emit = defineEmits<EmitsType>();

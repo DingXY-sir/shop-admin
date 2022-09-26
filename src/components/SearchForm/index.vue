@@ -23,9 +23,7 @@
     </el-form>
     <!-- 查询条件操作 -->
     <div class="flx-item-content operation">
-      <el-button type="primary" :icon="Search" @click="handleSearch"
-        >搜索</el-button
-      >
+      <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
       <el-button :icon="Delete" @click="handleReset">重置</el-button>
       <el-button
         type="primary"
@@ -45,13 +43,7 @@
 <script setup lang="ts">
 import SearchFormItem from "./components/SearchFormItem.vue";
 import { ref, reactive, computed, watch, onMounted } from "vue";
-import {
-  Delete,
-  Edit,
-  Search,
-  ArrowDown,
-  ArrowUp,
-} from "@element-plus/icons-vue";
+import { Delete, Edit, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 
 interface ProTableProps {

@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-19 17:08:10
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-31 17:03:20
+ * @LastEditTime: 2022-09-02 10:49:16
 -->
 <template>
-  <div class="container">
+  <div class="viev-container">
     <pro-table
       :tableData="tableData"
       :tableColumns="tableColumns"
@@ -35,16 +35,24 @@
           批量删除用户
         </el-button>
       </template>
+      <template #gender="scope">
+        <span>{{ scope.row["gender"] === "1" ? "男" : "女" }}</span>
+      </template>
       <template #status="scope">
         <el-switch
           v-model="scope.row.status"
           :active-text="scope.row.status === 1 ? '启用' : '禁用'"
           :active-value="1"
           :inactive-value="0"
+          @change="handleSwitchChange"
         />
       </template>
       <template #operation="scope">
-        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)"
+        <el-button
+          type="primary"
+          link
+          :icon="View"
+          @click="openDrawer('查看', scope.row)"
           >查看</el-button
         >
         <el-button
@@ -54,10 +62,18 @@
           @click="openDrawer('编辑', scope.row)"
           >编辑</el-button
         >
-        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)"
+        <el-button
+          type="primary"
+          link
+          :icon="Refresh"
+          @click="resetPass(scope.row)"
           >重置密码</el-button
         >
-        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"
+        <el-button
+          type="primary"
+          link
+          :icon="Delete"
+          @click="deleteAccount(scope.row)"
           >删除</el-button
         >
       </template>
@@ -133,13 +149,15 @@ const tableData = ref<Array<TableData>>([
     gender: "1",
     idCard: "130626100112910011",
     status: "0",
+    role: "运营",
     createTime: "2022-08-29 15:02:45",
   },
   {
     id: 2,
-    gender: "1",
+    gender: "0",
     idCard: "130626100112910011",
     status: "1",
+    role: "财务",
     createTime: "2022-08-29 15:02:05",
   },
   {
@@ -147,6 +165,7 @@ const tableData = ref<Array<TableData>>([
     gender: "1",
     idCard: "130626100112910011",
     status: "1",
+    role: "超级管理员",
     createTime: "2022-08-29 15:02:05",
   },
 ]);
@@ -162,6 +181,12 @@ const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
     label: "ID",
     width: 100,
     searchType: "text",
+  },
+  {
+    prop: "role",
+    label: "用户身份",
+    width: 100,
+    tag: true,
   },
   {
     prop: "gender",
@@ -232,13 +257,9 @@ const handleSubmit = () => {
 };
 const resetPass = (row: any) => {};
 const deleteAccount = (row: any) => {};
+//表单内元素事件
+const handleSwitchChange = (e: number) => {
+  console.log(e);
+};
 </script>
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-}
-</style>
+<style lang="scss" scoped></style>

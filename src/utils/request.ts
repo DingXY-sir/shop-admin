@@ -3,12 +3,13 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 10:33:49
+ * @LastEditTime: 2022-09-02 11:43:11
  */
 import axios,{AxiosInstance,AxiosRequestConfig,AxiosResponse,AxiosError} from "axios"
 import { ResultData } from "@/api/interface/index"
 import { useUserStore } from "@/store/modules/user"
-import {ElMessage} from "element-plus"
+import { ElMessage } from "element-plus"
+import { checkStatus } from "@/api/helper /checkStatus"
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout:6000,
@@ -25,7 +26,6 @@ class RequestHttp {
     this.service.interceptors.request.use((config: AxiosRequestConfig) => {
       // 在发送请求之前做些什么
       const userStore = useUserStore()
-      console.log(config)
       return config;
     }, (error: AxiosError) => {
       // 对请求错误做些什么
@@ -44,7 +44,13 @@ class RequestHttp {
       }
     }, (error: AxiosError) => {
       // 超出 2xx 范围的状态码都会触发该函数。
-      // 对响应错误做点什么
+      const { response } = error
+      //对响应超时单独判断
+
+      //对错误响应统一处理
+      if(response) checkStatus(response.status)
+      //对服务器没有返回或者断网状态下处理（跳转到500页面）
+
       return Promise.reject(error);
     });
   }

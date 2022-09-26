@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 14:37:22
+ * @LastEditTime: 2022-09-12 20:35:41
 -->
 <template>
   <div class="container">
@@ -38,7 +38,10 @@ const menuData = ref([
     icon: "goods-filled",
     path: "/goods",
     title: "商品管理",
-    children: [{ icon: "home-filled", path: "/goods/list", title: "商品列表" }],
+    children: [
+      { icon: "home-filled", path: "/goods/list", title: "商品列表" },
+      { icon: "home-filled", path: "/goods/addGoods", title: "添加商品" },
+    ],
   },
   {
     icon: "user-filled",

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-30 11:50:23
+ * @LastEditTime: 2022-09-02 11:39:56
 -->
 <template>
   <!-- 查询 -->
@@ -55,6 +55,8 @@
           :fixed="item.fixed"
           :resizable="true"
           :show-overflow-tooltip="true"
+          header-align="center"
+          align="center"
         >
           <template #default="scope">
             <slot :name="item.prop" :row="scope.row">
@@ -78,6 +80,7 @@
       v-model:page="page.page"
       v-model:limit="page.limit"
       :total="page.total"
+      :getList="getList"
     />
   </div>
 </template>
@@ -99,6 +102,7 @@ interface Table {
   border: boolean;
   tableColumns: Partial<Form.SearchFormItem>[];
   page: Form.Pageable;
+  getList: () => Promise<void>;
 }
 const prop = withDefaults(defineProps<Table>(), {
   border: true,
@@ -116,6 +120,7 @@ const getRowKeys = (row: { id: string }) => {
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow-x: hidden;
   .table_header {
     margin: 20px 0;
   }
@@ -133,15 +138,15 @@ const getRowKeys = (row: { id: string }) => {
     .el-table__body td {
       text-align: center;
     }
-    .el-table__header th {
-      height: 45px;
+    :deep(.el-table__header th) {
+      height: 45px !important;
       font-size: 15px;
       font-weight: bold;
       color: #252525;
       background: #fafafa;
     }
-    .el-table__row {
-      height: 45px;
+    :deep(.el-table__row) {
+      height: 45px !important;
     }
 
     // 设置 el-table 中 header 文字不换行
