@@ -3,13 +3,14 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-02 11:39:56
+ * @LastEditTime: 2022-09-30 17:20:26
 -->
 <template>
   <!-- 查询 -->
   <search-form
-    :searchParam="searchParam"
+    :searchParam="initParams"
     :getSearchList="getSearchList"
+    :reset="reset"
     v-show="isShowSearch"
   ></search-form>
   <div class="pro-table-container">
@@ -77,10 +78,9 @@
     </el-table>
     <!-- 分页 -->
     <Pagination
-      v-model:page="page.page"
-      v-model:limit="page.limit"
-      :total="page.total"
-      :getList="getList"
+      :pageable="pageable"
+      :handleSizeChange="handleSizeChange"
+      :handleCurrentChange="handleCurrentChange"
     />
   </div>
 </template>
@@ -89,29 +89,47 @@
 import { ref, reactive, computed, watch } from "vue";
 import { Refresh, Operation, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
+import { useTable } from "@/hooks/useTable";
 
 //表格功能
 const isShowSearch = ref<boolean>(true);
 const handleRefresh = () => {};
 const openColSetting = () => {};
+
 //表格数据
 interface Table {
-  searchParam: any;
-  getSearchList: Partial<Form.SearchFormItem>[];
-  tableData: any[];
+  getSearchList: Partial<Form.SearchFormItem>[]; //查询表单配置项
   border: boolean;
-  tableColumns: Partial<Form.SearchFormItem>[];
-  page: Form.Pageable;
-  getList: () => Promise<void>;
+  tableColumns: Partial<Form.SearchFormItem>[]; //表格配置项
+  // hooks
+  requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
+  initParams: any; // 初始化请求参数 ==> 非必传（默认为{}）
 }
+
 const prop = withDefaults(defineProps<Table>(), {
   border: true,
+  // initParams: {},
 });
+/**
+ * 使用Table，hooks
+ * */
+const {
+  searchParams,
+  tableData,
+  getTableList,
+  reset,
+  updatePageable,
+  pageable,
+  handleSizeChange,
+  handleCurrentChange,
+} = useTable(prop.requestApi, prop.initParams);
 
 //获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
 const getRowKeys = (row: { id: string }) => {
   return row.id;
 };
+//暴露查询表单方法和查询参数
+defineExpose({ searchParams, getTableList });
 </script>
 <style lang="scss" scoped>
 .pro-table-container {

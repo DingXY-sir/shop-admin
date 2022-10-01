@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-09-15 22:13:33
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-18 20:58:54
+ * @LastEditTime: 2022-09-27 15:22:10
 -->
 <template>
   <el-space>
@@ -22,8 +22,9 @@
 
 <script setup lang="ts">
 import { ElMessage } from "element-plus";
-import { ref, reactive, computed, watch } from "vue";
+import { ref, reactive, computed, watch, onMounted } from "vue";
 import type { Goods } from "@/types/goods";
+import { getAttrTemplate } from "@/api/modules/shop";
 
 interface emitType {
   (
@@ -39,24 +40,15 @@ interface emitType {
 const emit = defineEmits<emitType>();
 const attrVal = ref<number | null>(null);
 // 默认规格模版数据
-const defaultTemplateData = ref([
-  {
-    id: 10,
-    rule_name: "衣服",
-    rule_value: [
-      { value: "颜色", detail: ["红色", "绿色", "紫色"] },
-      { value: "尺码", detail: ["小号"] },
-    ],
-  },
-  {
-    id: 11,
-    rule_name: "手机",
-    rule_value: [
-      { value: "颜色", detail: ["金色", "银色", "暗紫色"] },
-      { value: "内存", detail: [64, 128, 256] },
-    ],
-  },
-]);
+const defaultTemplateData = ref<Array<Goods.AttrData>>([]);
+const getAttrData = async () => {
+  const res = await getAttrTemplate();
+  defaultTemplateData.value = res.data.data;
+};
+onMounted(() => {
+  getAttrData();
+});
+
 const handleConfirm = () => {
   if (attrVal.value) {
     const item = defaultTemplateData.value.find(

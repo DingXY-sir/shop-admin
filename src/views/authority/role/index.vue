@@ -3,18 +3,17 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-02 14:50:51
+ * @LastEditTime: 2022-09-30 16:40:08
 -->
+
 <template>
   <div class="viev-container">
     <pro-table
-      :tableData="tableData"
-      :tableColumns="tableColumns"
-      :searchParam="searchParam"
+      ref="tableRef"
+      :initParams="initParams"
       :getSearchList="getSearchList"
-      :page="page"
+      :tableColumns="tableColumns"
       :border="border"
-      :getList="getList"
     >
       <template #status="scope">
         <el-switch
@@ -63,17 +62,12 @@ import { ref, reactive, computed, watch, onMounted, PropType } from "vue";
 import { View, EditPen, Refresh } from "@element-plus/icons-vue";
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
-import { getRoleList } from "@/api/modules/user";
-import { useUserStore } from "@/store/modules/user";
+
 //表单查询条件
 const getSearchList = ref([
   { searchType: "text", label: "角色名称", prop: "name", isShow: true },
   { searchType: "select", label: "角色状态", prop: "status", isShow: true },
 ]);
-const searchParam = reactive({
-  name: "",
-  status: "" as RoleTableData["status"],
-});
 //表单内容
 const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
   { type: "selection", width: 80, fixed: "left" },
@@ -97,29 +91,16 @@ const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
     fixed: "right",
   },
 ]);
-const tableData = ref<Array<RoleTableData>>([]);
-//表单配置
-const page = reactive<Form.Pageable>({
-  page: 1,
-  limit: 10,
-  total: 0,
+//设置表单查询条件参数
+const initParams = reactive({
+  name: "",
+  status: "" as RoleTableData["status"],
 });
+
 const border = true;
-//Role请求
-const userStore = useUserStore();
-const getList = async () => {
-  const res = await getRoleList({
-    ...page,
-    ...searchParam,
-    type: "0",
-    ...userStore.userToken,
-  });
-  tableData.value = res.data.data.list;
-  page.total = res.data.data.total;
-};
-onMounted(() => {
-  getList();
-});
+//获取ProTable组件实例
+const tableRef = ref();
+onMounted(() => {});
 const handleSwitchOpen = (id: number, status: string) => {
   console.log(id, status);
 };

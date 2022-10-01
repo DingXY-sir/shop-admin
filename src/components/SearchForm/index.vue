@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 10:29:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-30 09:16:01
+ * @LastEditTime: 2022-09-30 15:33:31
 -->
 <template>
   <div class="table-search-container">
@@ -23,8 +23,10 @@
     </el-form>
     <!-- 查询条件操作 -->
     <div class="flx-item-content operation">
-      <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-      <el-button :icon="Delete" @click="handleReset">重置</el-button>
+      <el-button type="primary" :icon="Search" @click="handleSearch"
+        >搜索</el-button
+      >
+      <el-button :icon="Delete" @click="reset">重置</el-button>
       <el-button
         type="primary"
         @click="searchShow = !searchShow"
@@ -43,12 +45,19 @@
 <script setup lang="ts">
 import SearchFormItem from "./components/SearchFormItem.vue";
 import { ref, reactive, computed, watch, onMounted } from "vue";
-import { Delete, Edit, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
+import {
+  Delete,
+  Edit,
+  Search,
+  ArrowDown,
+  ArrowUp,
+} from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 
 interface ProTableProps {
   searchParam: any; //表单参数
   getSearchList: Partial<Form.SearchFormItem>[]; //查询表单数组数据
+  reset: () => void;
 }
 const prop = withDefaults(defineProps<ProTableProps>(), {
   searchParam: () => {},
@@ -68,8 +77,9 @@ const searchList = computed((): Partial<Form.SearchFormItem>[] => {
   return prop.getSearchList.slice(0, maxLength.value);
 });
 
-const handleSearch = () => {};
-const handleReset = () => {};
+const handleSearch = () => {
+  console.log(prop.searchParam);
+};
 </script>
 <style lang="scss" scoped>
 .table-search-container {

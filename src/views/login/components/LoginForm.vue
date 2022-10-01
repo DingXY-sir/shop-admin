@@ -3,13 +3,13 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-24 15:39:39
+ * @LastEditTime: 2022-09-27 14:23:35
 -->
 <template>
   <div class="login-form-container">
     <el-form ref="formRef" :model="loginForm" :rules="loginRules">
-      <el-form-item prop="phone">
-        <el-input v-model="loginForm.phone" placeholder="用户名：">
+      <el-form-item prop="username">
+        <el-input v-model="loginForm.username" placeholder="用户名：">
           <template #prefix>
             <el-icon><User /></el-icon>
           </template>
@@ -22,7 +22,7 @@
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item prop="code">
+      <!-- <el-form-item prop="code">
         <div class="flx-justify-between">
           <div class="code_ipt">
             <el-input
@@ -34,7 +34,7 @@
             <el-image :src="loginForm.imgCode" @click="updateCode" />
           </div>
         </div>
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
     <div>
       <el-button @click="loginHandle(formRef)" :loading="loading"
@@ -50,7 +50,13 @@ import { ref, reactive, computed, watch, onMounted } from "vue";
 import type { ElForm } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
 import { Login } from "@/api/interface/index";
-import { getCode, getUserAuth, getRoleId, getLogin } from "@/api/modules/login";
+import {
+  getCode,
+  getUserAuth,
+  getRoleId,
+  getLogin,
+  getLoginMock,
+} from "@/api/modules/login";
 import { Md5 } from "ts-md5";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessage } from "element-plus";
@@ -59,25 +65,29 @@ import { useRouter, useRoute } from "vue-router";
 type FormInstance = InstanceType<typeof ElForm>;
 const formRef = ref<FormInstance>();
 const loginRules = reactive({
-  phone: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
   code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
 });
-const loginForm = reactive<Login.ReqLoginForm>({
-  phone: "",
+// const loginForm = reactive<Login.ReqLoginForm>({
+//   phone: "",
+//   password: "",
+//   code: "",
+//   imgCode: "",
+// });
+const loginForm = reactive({
+  username: "",
   password: "",
-  code: "",
-  imgCode: "",
 });
 
 //验证码
-const getCodeHandle = async () => {
-  const { data } = await getCode();
-  loginForm.imgCode = "data:image/png;base64," + data;
-};
-const updateCode = () => {
-  getCodeHandle();
-};
+// const getCodeHandle = async () => {
+//   const { data } = await getCode();
+//   loginForm.imgCode = "data:image/png;base64," + data;
+// };
+// const updateCode = () => {
+//   getCodeHandle();
+// };
 
 //登陆表单
 const loading = ref<boolean>(false);
@@ -89,27 +99,34 @@ const loginHandle = (formEl: FormInstance | undefined) => {
     if (!valid) return;
     loading.value = true;
     try {
-      //登陆逻辑
       const params = {
-        ...loginForm,
-        type: 0,
-        password: Md5.hashStr(loginForm.password),
+        username: loginForm.username,
+        password: loginForm.password,
       };
-      const res = await getUserAuth(params);
-      const { roleId, userId } = res?.data?.data[0];
-      const resRoleId = await getRoleId({ roleId, userId });
-      const resLogin = await getLogin({
-        ...loginForm,
-        password: Md5.hashStr(loginForm.password),
-      });
-      //使用pinia储存token、jti
-      const userStore = useUserStore();
-      userStore.setUserToken({
-        access_token: resLogin.data.data.access_token,
-        jti: resLogin.data.data.jti,
-      });
-      userStore.setUserInfo(resLogin.data.data.username);
-      ElMessage.success("登录成功！");
+      const res = await getLoginMock(params);
+      console.log(res);
+
+      //登陆逻辑
+      // const params = {
+      //   ...loginForm,
+      //   type: 0,
+      //   password: Md5.hashStr(loginForm.password),
+      // };
+      // const res = await getUserAuth(params);
+      // const { roleId, userId } = res?.data?.data[0];
+      // const resRoleId = await getRoleId({ roleId, userId });
+      // const resLogin = await getLogin({
+      //   ...loginForm,
+      //   password: Md5.hashStr(loginForm.password),
+      // });
+      // //使用pinia储存token、jti
+      // const userStore = useUserStore();
+      // userStore.setUserToken({
+      //   access_token: resLogin.data.data.access_token,
+      //   jti: resLogin.data.data.jti,
+      // });
+      // userStore.setUserInfo(resLogin.data.data.username);
+      // ElMessage.success("登录成功！");
       //通过路由拦截记录未登录时跳转的地址
       let redirect = route.query.redirect || "/home";
       if (typeof redirect !== "string") {
@@ -128,7 +145,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 };
 
 onMounted(() => {
-  getCodeHandle();
+  // getCodeHandle();
   document.onkeydown = (e: any) => {
     e = window.event || e;
     if (e.code === "Enter" || e.code === "enter" || e.code === "NumpadEnter") {

@@ -3,13 +3,13 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-02 11:43:11
+ * @LastEditTime: 2022-09-27 13:52:58
  */
 import axios,{AxiosInstance,AxiosRequestConfig,AxiosResponse,AxiosError} from "axios"
 import { ResultData } from "@/api/interface/index"
 import { useUserStore } from "@/store/modules/user"
 import { ElMessage } from "element-plus"
-import { checkStatus } from "@/api/helper /checkStatus"
+import { checkStatus } from "@/api/helper/checkStatus"
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout:6000,

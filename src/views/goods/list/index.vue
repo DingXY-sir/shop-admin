@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 17:08:10
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-02 10:49:16
+ * @LastEditTime: 2022-09-29 20:54:03
 -->
 <template>
   <div class="viev-container">
@@ -90,7 +90,7 @@
 
 <script setup lang="ts">
 import Card from "./components/card.vue";
-import { ref, reactive, computed, watch } from "vue";
+import { ref, onMounted, reactive, computed, watch } from "vue";
 import {
   View,
   EditPen,

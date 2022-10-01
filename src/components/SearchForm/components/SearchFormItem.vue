@@ -3,7 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-23 11:28:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-24 14:10:48
+ * @LastEditTime: 2022-09-30 15:02:07
+-->
+<!--
+ * TS  ! 非空断言操作符
 -->
 <template>
   <!-- 文本框 -->
@@ -64,6 +67,6 @@ interface SearchFormItem {
   searchParam: any;
   item: Partial<Form.SearchFormItem>;
 }
-defineProps<SearchFormItem>();
+const prop = defineProps<SearchFormItem>();
 </script>
 <style lang="scss" scoped></style>

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 11:26:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-18 15:00:05
+ * @LastEditTime: 2022-09-27 13:51:14
  */
 import {Login} from "@/api/interface/index"
 import http from "@/utils/request"
@@ -27,4 +27,10 @@ export const getLogin = (params:Login.IReqLogin) => {
 }
 export const logOut = () => {
   return http.post("/userLogout")
+}
+
+// mock
+//登陆接口
+export const getLoginMock = (params:{username:string,password:string}) => {
+  return http.post("/login",qs.stringify(params))
 }
