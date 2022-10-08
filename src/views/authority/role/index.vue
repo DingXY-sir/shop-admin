@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-30 16:40:08
+ * @LastEditTime: 2022-10-08 10:50:57
 -->
 
 <template>
@@ -15,6 +15,26 @@
       :tableColumns="tableColumns"
       :border="border"
     >
+      <template #tableHeader="scope">
+        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
+          >新增用户</el-button
+        >
+        <el-button type="primary" :icon="Upload" plain @click="batchAdd"
+          >批量添加用户</el-button
+        >
+        <el-button type="primary" :icon="Download" plain @click="downloadFile"
+          >导出用户数据</el-button
+        >
+        <el-button
+          type="danger"
+          :icon="Delete"
+          plain
+          :disabled="!scope.isSelected"
+          @click="batchDelete()"
+        >
+          批量删除用户
+        </el-button>
+      </template>
       <template #status="scope">
         <el-switch
           v-model="scope.row.status"
@@ -52,6 +72,7 @@
       v-model="isDialogShow"
       v-model:adminId="adminId"
       :titleName="titleName"
+      @success="handleSuccess"
     />
   </div>
 </template>
@@ -59,7 +80,15 @@
 <script setup lang="ts">
 import Card from "./components/card.vue";
 import { ref, reactive, computed, watch, onMounted, PropType } from "vue";
-import { View, EditPen, Refresh } from "@element-plus/icons-vue";
+import {
+  View,
+  EditPen,
+  Refresh,
+  Delete,
+  CirclePlus,
+  Download,
+  Upload,
+} from "@element-plus/icons-vue";
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
 
@@ -108,7 +137,10 @@ const handleSwitchOpen = (id: number, status: string) => {
 const isDialogShow = ref(false);
 const titleName = ref("授权");
 const adminId = ref<number | null>(null);
-const openDrawer = (name: string, row: any) => {
+const openDrawer = (name: string, row?: any) => {
+  if (name === "新增") {
+    isDialogShow.value = true;
+  }
   if (name === "编辑") {
     isDialogShow.value = true;
     adminId.value = row.id;
@@ -119,5 +151,10 @@ const openDrawer = (name: string, row: any) => {
   }
 };
 const resetPass = (row: any) => {};
+
+//弹框成功操作
+const handleSuccess = () => {
+  isDialogShow.value = false;
+};
 </script>
 <style lang="scss" scoped></style>

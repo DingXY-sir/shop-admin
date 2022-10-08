@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 16:46:42
+ * @LastEditTime: 2022-10-08 11:31:37
 -->
 <template>
-  <div class="container flx-justify-between" style="padding: 0 15px">
+  <div class="container flx-justify-between" style="padding: 0 30px">
     <div class="flx-center">
       <collapse-icon />
       <breadcrumb />

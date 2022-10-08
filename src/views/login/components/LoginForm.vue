@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-27 14:23:35
+ * @LastEditTime: 2022-10-08 11:51:12
 -->
 <template>
   <div class="login-form-container">
@@ -48,8 +48,10 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onMounted } from "vue";
 import type { ElForm } from "element-plus";
+import { ElNotification } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
 import { Login } from "@/api/interface/index";
+import { getCurrentTimes } from "@/utils/util";
 import {
   getCode,
   getUserAuth,
@@ -133,6 +135,12 @@ const loginHandle = (formEl: FormInstance | undefined) => {
         redirect = "/home";
       }
       router.replace(redirect);
+      ElNotification({
+        title: getCurrentTimes(),
+        message: "欢迎登录 Shop-Admin",
+        type: "success",
+        duration: 2000,
+      });
     } finally {
       loading.value = false;
     }

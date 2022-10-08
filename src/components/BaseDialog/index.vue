@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-30 17:39:28
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-31 14:22:21
+ * @LastEditTime: 2022-10-08 10:28:02
 -->
 <template>
   <el-dialog ref="dialogRef" width="40%">
@@ -18,9 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { ref } from "vue";
 import type { DialogInstance } from "@/types/element-plus";
-
 const dialogRef = ref<DialogInstance | null>(null);
 
 const handleCancel = () => {
