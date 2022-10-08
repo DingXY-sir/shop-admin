@@ -3,11 +3,17 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 10:50:57
+ * @LastEditTime: 2022-10-08 16:38:34
 -->
 
 <template>
-  <div class="viev-container">
+  <div
+    class="viev-container"
+    v-waterMarker="{
+      text: 'admin',
+      textColor: 'rgba(180, 180, 180, 0.6)',
+    }"
+  >
     <pro-table
       ref="tableRef"
       :initParams="initParams"
