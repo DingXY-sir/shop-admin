@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 16:38:34
+ * @LastEditTime: 2022-10-09 14:57:59
 -->
 
 <template>
@@ -28,15 +28,19 @@
         <el-button type="primary" :icon="Upload" plain @click="batchAdd"
           >批量添加用户</el-button
         >
-        <el-button type="primary" :icon="Download" plain @click="downloadFile"
+        <el-button
+          type="primary"
+          :icon="Download"
+          plain
+          v-debounce="handleExport"
           >导出用户数据</el-button
         >
         <el-button
           type="danger"
           :icon="Delete"
           plain
-          :disabled="!scope.isSelected"
-          @click="batchDelete()"
+          :disabled="scope.isSelected"
+          v-debounce="batchDelete"
         >
           批量删除用户
         </el-button>
@@ -97,6 +101,7 @@ import {
 } from "@element-plus/icons-vue";
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
+import { ElMessage } from "element-plus";
 
 //表单查询条件
 const getSearchList = ref([
@@ -161,6 +166,17 @@ const resetPass = (row: any) => {};
 //弹框成功操作
 const handleSuccess = () => {
   isDialogShow.value = false;
+};
+
+const handleExport = () => {
+  console.log("000");
+};
+const batchDelete = () => {
+  ElMessage({
+    type: "success",
+    message: "防抖～",
+    showClose: true,
+  });
 };
 </script>
 <style lang="scss" scoped></style>

@@ -3,13 +3,16 @@
  * @Author: DXY
  * @Date: 2022-10-08 14:18:41
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 15:58:06
+ * @LastEditTime: 2022-10-09 11:30:41
  */
 import { App } from "vue";
 import waterMarker from "./modules/waterMaker";
+import debounce from "./modules/debounce"
 
-
-const direcitvesList = {waterMarker};
+const direcitvesList = {
+  debounce,
+  waterMarker,
+};
 
 const directives = {
   install: (app:App<Element>) => {

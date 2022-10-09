@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-08 14:28:56
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 16:38:22
+ * @LastEditTime: 2022-10-08 16:54:46
  */
 
 /**
@@ -31,6 +31,7 @@ const addWaterMaker:Directive = (str: string, parentNode: any, font: any, textCo
   cans.textBaseline = "middle";
   cans.fillText(str, can.width / 10, can.height / 2);
   parentNode.style.backgroundImage = `url(${can.toDataURL("image/png")})`
+  
 }
 const waterMarker = {
   mounted(el:DirectiveBinding,binding:DirectiveBinding) {
