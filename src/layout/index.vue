@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:36:34
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 16:34:30
+ * @LastEditTime: 2022-10-10 15:44:51
 -->
 <template>
   <div class="container">
@@ -24,6 +24,7 @@
         <el-footer><com-footer /></el-footer>
       </el-container>
     </el-container>
+    <theme-drawer />
   </div>
 </template>
 
@@ -32,7 +33,7 @@ import ComMenu from "./components/Menu/index.vue";
 import ComHeader from "./components/Header/index.vue";
 import ComFooter from "./components/Footer/index.vue";
 import ComTabs from "./components/Tabs/index.vue";
-
+import ThemeDrawer from "./components/ThemeDrawer/index.vue";
 import { ref, reactive, computed, watch } from "vue";
 </script>
 <style lang="scss" scoped>
