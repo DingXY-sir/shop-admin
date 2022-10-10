@@ -1,9 +1,9 @@
 <!--
- * @Descripttion: 面包屑
+ * @Descripttion: header栏面包屑
  * @Author: DXY
  * @Date: 2022-08-22 14:16:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 15:08:16
+ * @LastEditTime: 2022-10-10 10:29:13
 -->
 <template>
   <div class="bread-container flx-center">

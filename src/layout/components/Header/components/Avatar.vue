@@ -1,9 +1,9 @@
 <!--
- * @Descripttion: 
+ * @Descripttion: header栏头像
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 14:24:03
+ * @LastEditTime: 2022-10-10 10:28:47
 -->
 <template>
   <div class="container flx-items-center">
