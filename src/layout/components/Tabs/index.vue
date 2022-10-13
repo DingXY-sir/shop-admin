@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 17:29:59
+ * @LastEditTime: 2022-10-13 13:19:46
 -->
 <template>
   <div class="tabs-container flx-items-center">
@@ -62,6 +62,12 @@ const handleClose = (item: TagItem, index: number) => {
   .tag_item {
     margin-right: 10px;
     cursor: pointer;
+  }
+  .el-tag--plain {
+    --el-tag-border-color: var(--el-color-primary);
+  }
+  .el-tag--dark {
+    --el-tag-hover-color: none;
   }
 }
 </style>

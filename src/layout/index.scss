@@ -20,7 +20,8 @@
                 left: 0;
                 width: 4px;
                 content: "";
-                background-color: $menuActiveBorderColor;
+                // background-color: $menuActiveBorderColor;
+                background-color: $primary-color;
               }
             }
           }

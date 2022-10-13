@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 11:51:12
+ * @LastEditTime: 2022-10-13 14:09:56
 -->
 <template>
   <div class="login-form-container">
@@ -37,7 +37,7 @@
       </el-form-item> -->
     </el-form>
     <div>
-      <el-button @click="loginHandle(formRef)" :loading="loading"
+      <el-button type="primary" @click="loginHandle(formRef)" :loading="loading"
         >登陆</el-button
       >
       <el-button @click="resetForm(formRef)">重置</el-button>
