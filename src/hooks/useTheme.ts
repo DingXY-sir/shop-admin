@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-10 17:10:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 13:37:18
+ * @LastEditTime: 2022-10-13 17:50:58
  */
 import { computed, onBeforeMount } from "vue";
 import { ElMessage } from "element-plus";
@@ -14,6 +14,16 @@ import { getDarkColor, getLightColor } from "@/utils/theme";
 export const useTheme = () => {
   const globalState = useGlobalState();
   const themeConfig = computed(() => globalState.themeConfig);
+  // * 暗黑模式
+  const switchDark = () => {
+    const body = document.documentElement as HTMLElement;
+    if (themeConfig.value.isDark) {
+      body.setAttribute("class", "dark");
+    } else {
+      body.setAttribute("class", "");
+    }
+  };
+
   // * 修改主题
   const changePrimary = (val: string) => {
     if (!val) {
@@ -38,9 +48,12 @@ export const useTheme = () => {
   onBeforeMount(() => {
     //挂载前设置主题
     changePrimary(themeConfig.value.primary);
+    //是否存在暗黑模式
+    switchDark();
   });
 
   return {
     changePrimary,
+    switchDark,
   };
 };

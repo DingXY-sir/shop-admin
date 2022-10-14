@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 10:28:47
+ * @LastEditTime: 2022-10-14 11:01:24
 -->
 <template>
-  <div class="container flx-items-center">
+  <div class="avatar-container flx-items-center">
     <span class="user_name">{{ userName }}</span>
     <el-dropdown>
       <div class="avatar">

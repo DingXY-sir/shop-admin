@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-18 10:31:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 14:30:11
+ * @LastEditTime: 2022-10-14 10:12:55
 -->
 <template>
-  <div class="container flx-items-center">
+  <div class="collapse-container flx-items-center">
     <el-icon class="icon" @click="menuStore.setCollapse()">
       <component :is="isCollapse ? 'expand' : 'fold'"></component>
     </el-icon>

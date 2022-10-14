@@ -56,5 +56,6 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchForm: typeof import('./src/components/SearchForm/index.vue')['default']
     SearchFormItem: typeof import('./src/components/SearchForm/components/SearchFormItem.vue')['default']
+    SwitchDark: typeof import('./src/components/SwitchDark/index.vue')['default']
   }
 }

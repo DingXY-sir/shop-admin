@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-10 15:41:23
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 17:36:54
+ * @LastEditTime: 2022-10-14 11:26:24
 -->
 <template>
   <el-drawer v-model="themeVisible" title="布局设置" size="300px">
@@ -19,6 +19,12 @@
         @change="changePrimary"
       />
     </div>
+    <!-- 暗黑模式strat -->
+    <div class="theme_item flx-justify-between">
+      <span>暗黑模式</span>
+      <switch-dark />
+    </div>
+    <!-- 暗黑模式end -->
     <!-- 全局主题end  -->
   </el-drawer>
 </template>
@@ -29,6 +35,7 @@ import { useGlobalState } from "@/store/index";
 import { DEFAULT_COLOR } from "@/config/config";
 import { useTheme } from "@/hooks/useTheme";
 import mittBus from "@/utils/mittBus";
+import SwitchDark from "@/components/SwitchDark/index.vue";
 
 const primaryColorsList = [
   DEFAULT_COLOR,
@@ -50,4 +57,8 @@ const themeConfig = computed(() => globalStore.themeConfig);
 const themeVisible = ref(false);
 mittBus.on("openThemeDrawer", () => (themeVisible.value = true));
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.theme_item:not(:first-child) {
+  margin-top: 10px;
+}
+</style>
