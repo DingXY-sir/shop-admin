@@ -12,9 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
-const welcome = new URL("../../assets/images/welcome.png", import.meta.url)
-  .href;
+const welcome = new URL("../../assets/images/welcome.png", import.meta.url).href;
 </script>
 <style lang="scss" scoped>
 .container {

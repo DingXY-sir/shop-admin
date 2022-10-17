@@ -13,11 +13,7 @@
     </div>
     <div class="theme_item flx-justify-between">
       <span>主题颜色</span>
-      <el-color-picker
-        v-model="themeConfig.primary"
-        :predefine="primaryColorsList"
-        @change="changePrimary"
-      />
+      <el-color-picker v-model="themeConfig.primary" :predefine="primaryColorsList" @change="changePrimary" />
     </div>
     <!-- 暗黑模式strat -->
     <div class="theme_item flx-justify-between">

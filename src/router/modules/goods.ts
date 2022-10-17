@@ -1,5 +1,5 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: DXY
  * @Date: 2022-08-19 16:54:48
  * @LastEditors: DXY
@@ -12,9 +12,9 @@ const goodsRouter: Array<RouteRecordRaw> = [
   {
     path: "/goods",
     component: Layout,
-    redirect: '/goods/list',
+    redirect: "/goods/list",
     meta: {
-      title:"商品管理"
+      title: "商品管理",
     },
     children: [
       {
@@ -22,21 +22,21 @@ const goodsRouter: Array<RouteRecordRaw> = [
         name: "goodsList",
         meta: {
           title: "商品列表",
-          requiresAuth:true
+          requiresAuth: true,
         },
-        component:() => import("@/views/goods/list/index.vue")
+        component: () => import("@/views/goods/list/index.vue"),
       },
       {
         path: "addGoods",
         name: "addGoods",
         meta: {
           title: "添加商品",
-          requiresAuth:true
+          requiresAuth: true,
         },
-        component:() => import("@/views/goods/addGoods/index.vue")
-      }
-    ]
-  }
-]
+        component: () => import("@/views/goods/addGoods/index.vue"),
+      },
+    ],
+  },
+];
 
-export default goodsRouter
+export default goodsRouter;

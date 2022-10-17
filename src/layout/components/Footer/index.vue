@@ -6,9 +6,7 @@
  * @LastEditTime: 2022-08-16 11:16:10
 -->
 <template>
-  <div class="footer-container">
-    2022 © Shop-Admin Technical Service Platform.
-  </div>
+  <div class="footer-container">2022 © Shop-Admin Technical Service Platform.</div>
 </template>
 
 <script setup lang="ts">

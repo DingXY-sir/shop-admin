@@ -1,5 +1,5 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: DXY
  * @Date: 2022-08-19 17:09:30
  * @LastEditors: DXY
@@ -12,9 +12,9 @@ const userRouter: Array<RouteRecordRaw> = [
   {
     path: "/user",
     component: Layout,
-    redirect:"/user/list",
+    redirect: "/user/list",
     meta: {
-      title:"用户管理"
+      title: "用户管理",
     },
     children: [
       {
@@ -23,11 +23,11 @@ const userRouter: Array<RouteRecordRaw> = [
         component: () => import("@/views/user/index.vue"),
         meta: {
           requiresAuth: true,
-          title:"用户列表"
-        }
-      }
-    ]
-  }
-]
+          title: "用户列表",
+        },
+      },
+    ],
+  },
+];
 
-export default userRouter
+export default userRouter;

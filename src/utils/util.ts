@@ -19,20 +19,20 @@ export function deepCopy<T>(obj: any): T {
     newObj = {};
   }
   for (let attr in obj) {
-    if (typeof obj[attr] === 'object') {
-      newObj[attr] = deepCopy(obj[attr])
+    if (typeof obj[attr] === "object") {
+      newObj[attr] = deepCopy(obj[attr]);
     } else {
-      newObj[attr] = obj[attr]
+      newObj[attr] = obj[attr];
     }
   }
-  return newObj
+  return newObj;
 }
 /**
  * @description 判断数据类型
  * @param {Any} val 判断类型的数据
  * @return string
  */
-export function isType(val : any) {
+export function isType(val: any) {
   if (val === null) return "null";
   if (typeof val !== "object") return typeof val;
   else return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase();
@@ -52,5 +52,4 @@ export function getCurrentTimes() {
   if (hours > 14 && hours <= 18) return `下午好 🌞`;
   if (hours > 18 && hours <= 24) return `晚上好 🌛`;
   if (hours > 24 && hours <= 6) return `凌晨好 🌛`;
-  
 }

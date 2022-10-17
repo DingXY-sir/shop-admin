@@ -36,7 +36,7 @@ onMounted(() => {
   }
   const sortable = new Sortable(draggableContainer.value, {
     animation: 150,
-    onUpdate: (e) => {
+    onUpdate: e => {
       //移动完触法
       if (e.oldIndex && e.newIndex) {
         //删除当前元素

@@ -9,30 +9,20 @@
   <div class="container">
     <el-form label-position="left" label-width="100px" @submit.enter.prevent>
       <!-- <draggable v-model="depData"> -->
-      <el-form-item
-        class="flx-items-center edit-item"
-        v-for="(item, index) in depData"
-        :key="item.value"
-      >
+      <el-form-item class="flx-items-center edit-item" v-for="(item, index) in depData" :key="item.value">
         <template #label
           ><el-icon><Grid /></el-icon>
         </template>
         <el-space direction="vertical" alignment="start">
           <div class="flx-items-center">
             {{ item.value }}
-            <el-icon class="item-icon-close" @click="depData.splice(index, 1)"
-              ><CircleCloseFilled
-            /></el-icon>
+            <el-icon class="item-icon-close" @click="depData.splice(index, 1)"><CircleCloseFilled /></el-icon>
           </div>
           <el-space alignment="start">
             <!-- <draggable v-model="item.detail"> -->
-            <el-tag
-              v-for="(tag, index) in item.detail"
-              closable
-              @close="item.detail.splice(index, 1)"
-              :key="tag"
-              >{{ tag }}</el-tag
-            >
+            <el-tag v-for="(tag, index) in item.detail" closable @close="item.detail.splice(index, 1)" :key="tag">{{
+              tag
+            }}</el-tag>
             <!-- </draggable> -->
 
             <el-input
@@ -44,14 +34,7 @@
               @keyup.enter="handleBlur(item)"
               @blur="handleBlur(item)"
             />
-            <el-button
-              v-else
-              class="button-new-tag ml-1"
-              size="small"
-              @click="showInput(item)"
-            >
-              + New Tag
-            </el-button>
+            <el-button v-else class="button-new-tag ml-1" size="small" @click="showInput(item)"> + New Tag </el-button>
           </el-space>
         </el-space>
       </el-form-item>
@@ -69,9 +52,7 @@
             <el-input v-model="attrForm.detail[0]"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="handleCreateAttr()"
-              >确定</el-button
-            >
+            <el-button type="primary" @click="handleCreateAttr()">确定</el-button>
             <el-button @click="isAdd = false">取消</el-button>
           </el-form-item>
         </el-form>
@@ -127,10 +108,10 @@ const InputRef = ref<HTMLInputElement | null>(null);
 //父组件值改变监听改变的内容赋值深拷贝depData
 watch(
   () => props.modelValue,
-  (newVal) => {
+  newVal => {
     //修改父组件传递值
     const temp = JSON.parse(JSON.stringify(newVal)) as Array<ItemType>;
-    depData.value = temp.map((item) => ({
+    depData.value = temp.map(item => ({
       ...item,
       inputVisible: false,
       inputValue: "",
@@ -139,16 +120,16 @@ watch(
   {
     deep: true,
     immediate: true,
-  }
+  },
 );
 //子组件修改父组件数据，然后通过emit传递实现响应
 watch(
   () => depData,
-  (newVal) => emit("update:model-value", newVal),
+  newVal => emit("update:model-value", newVal),
   {
     deep: true,
     immediate: true,
-  }
+  },
 );
 
 const showInput = async (item: ItemType) => {

@@ -5,8 +5,8 @@
  * @LastEditors: DXY
  * @LastEditTime: 2022-08-19 16:51:11
  */
-import { RouteRecordRaw } from "vue-router"
-import {Layout} from "../constant"
+import { RouteRecordRaw } from "vue-router";
+import { Layout } from "../constant";
 
 const systemRouter: Array<RouteRecordRaw> = [
   {
@@ -14,28 +14,28 @@ const systemRouter: Array<RouteRecordRaw> = [
     component: Layout,
     redirect: "/authority/auth",
     meta: {
-      title:'权限管理'
+      title: "权限管理",
     },
     children: [
       {
         path: "auth",
-        name: 'auth',
+        name: "auth",
         component: () => import("@/views/authority/auth/index.vue"),
         meta: {
           requiresAuth: true,
-          title:'权限列表'
-        }
+          title: "权限列表",
+        },
       },
       {
         path: "role",
-        name: 'role',
+        name: "role",
         component: () => import("@/views/authority/role/index.vue"),
         meta: {
           requiresAuth: true,
-          title:'角色管理'
-        }
+          title: "角色管理",
+        },
       },
-    ]
-  }
-]
-export default systemRouter
+    ],
+  },
+];
+export default systemRouter;

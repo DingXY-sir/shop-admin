@@ -6,12 +6,12 @@
  * @LastEditTime: 2022-09-27 16:37:18
  */
 
-import http from "@/utils/request"
-import qs from "qs"
-import {Goods} from "@/types/goods"
+import http from "@/utils/request";
+import qs from "qs";
+import { Goods } from "@/types/goods";
 export const getAttrTemplate = () => {
-  return http.post<Array<Goods.AttrData>>("/attrTemplate")
-}
+  return http.post<Array<Goods.AttrData>>("/attrTemplate");
+};
 export const getMultiAttrList = () => {
-  return http.post<Goods.MultiAttrList>("/multiAttr")
-}
+  return http.post<Goods.MultiAttrList>("/multiAttr");
+};

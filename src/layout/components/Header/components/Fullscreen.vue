@@ -7,20 +7,8 @@
 -->
 <template>
   <div class="fullscreen-container flx-items-center">
-    <el-tooltip
-      class="box-item"
-      effect="dark"
-      :content="isFullscreen ? '退出全屏' : '全屏'"
-      placement="bottom"
-    >
-      <i
-        :class="[
-          'iconfont',
-          isFullscreen ? 'icon-tuichuquanping' : 'icon-quanping',
-        ]"
-        class="icon_style"
-        @click="toggle()"
-      ></i>
+    <el-tooltip class="box-item" effect="dark" :content="isFullscreen ? '退出全屏' : '全屏'" placement="bottom">
+      <i :class="['iconfont', isFullscreen ? 'icon-tuichuquanping' : 'icon-quanping']" class="icon_style" @click="toggle()"></i>
     </el-tooltip>
   </div>
 </template>

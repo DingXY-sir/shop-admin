@@ -6,7 +6,7 @@
  * @LastEditTime: 2022-09-28 13:51:24
  */
 export namespace Table {
-  export interface Pageable{
+  export interface Pageable {
     pageNum: number;
     pageSize: number;
     total: number;
@@ -16,14 +16,14 @@ export namespace Table {
     // searchParams: {
     //   [key:string]:any
     // },
-    searchParams:Record<string,any>,
+    searchParams: Record<string, any>;
     searchInitParams: {
-      [key:string]:any
-    },
-    tableData: any[],
-    pageable: Pageable,
+      [key: string]: any;
+    };
+    tableData: any[];
+    pageable: Pageable;
     totalParams: {
-      [key: string]: any
-    },
+      [key: string]: any;
+    };
   }
 }

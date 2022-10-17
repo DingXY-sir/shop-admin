@@ -7,7 +7,7 @@
  */
 
 export namespace User {
-  export interface ReqRoleList{
+  export interface ReqRoleList {
     limit: number;
     page: number;
     name: string;
@@ -15,7 +15,7 @@ export namespace User {
     jti: string;
     access_token: string;
   }
-  export interface ReqList{
+  export interface ReqList {
     createTime: string;
     iconName: null;
     id: number;
@@ -24,7 +24,7 @@ export namespace User {
     roleTypeId: number;
     status: "0" | "1";
   }
-  export interface ResRoleList{
+  export interface ResRoleList {
     list: Array<ReqList>;
     total: number;
   }

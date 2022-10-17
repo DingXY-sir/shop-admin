@@ -7,12 +7,7 @@
 -->
 <template>
   <!-- 查询 -->
-  <search-form
-    :searchParam="initParams"
-    :getSearchList="getSearchList"
-    :reset="reset"
-    v-show="isShowSearch"
-  ></search-form>
+  <search-form :searchParam="initParams" :getSearchList="getSearchList" :reset="reset" v-show="isShowSearch"></search-form>
   <div class="pro-table-container">
     <!-- 表格头部 -->
     <div class="table_header flx-justify-between">
@@ -23,20 +18,11 @@
       <div class="header_button_rt">
         <el-button :icon="Refresh" circle @click="handleRefresh"></el-button>
         <el-button :icon="Operation" circle @click="openColSetting"></el-button>
-        <el-button
-          :icon="ArrowUp"
-          circle
-          @click="isShowSearch = !isShowSearch"
-        ></el-button>
+        <el-button :icon="ArrowUp" circle @click="isShowSearch = !isShowSearch"></el-button>
       </div>
     </div>
     <!-- 表格主体 -->
-    <el-table
-      height="575"
-      :data="tableData"
-      :border="border"
-      :row-key="getRowKeys"
-    >
+    <el-table height="575" :data="tableData" :border="border" :row-key="getRowKeys">
       <template v-for="item in tableColumns" :key="item">
         <!-- 单选或多选 -->
         <el-table-column
@@ -77,16 +63,12 @@
       </template>
     </el-table>
     <!-- 分页 -->
-    <Pagination
-      :pageable="pageable"
-      :handleSizeChange="handleSizeChange"
-      :handleCurrentChange="handleCurrentChange"
-    />
+    <Pagination :pageable="pageable" :handleSizeChange="handleSizeChange" :handleCurrentChange="handleCurrentChange" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { ref } from "vue";
 import { Refresh, Operation, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 import { useTable } from "@/hooks/useTable";
@@ -102,7 +84,9 @@ interface Table {
   border: boolean;
   tableColumns: Partial<Form.SearchFormItem>[]; //表格配置项
   // hooks
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initParams: any; // 初始化请求参数 ==> 非必传（默认为{}）
 }
 
@@ -113,16 +97,8 @@ const prop = withDefaults(defineProps<Table>(), {
 /**
  * 使用Table，hooks
  * */
-const {
-  searchParams,
-  tableData,
-  getTableList,
-  reset,
-  updatePageable,
-  pageable,
-  handleSizeChange,
-  handleCurrentChange,
-} = useTable(prop.requestApi, prop.initParams);
+const { searchParams, tableData, getTableList, reset, updatePageable, pageable, handleSizeChange, handleCurrentChange } =
+  useTable(prop.requestApi, prop.initParams);
 
 //获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
 const getRowKeys = (row: { id: string }) => {

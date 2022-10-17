@@ -6,11 +6,7 @@
  * @LastEditTime: 2022-08-31 17:38:51
 -->
 <template>
-  <base-dialog
-    :title="adminId ? `编辑${titleName}` : `新增${titleName}`"
-    @confirm="handleConfirm"
-    @closed="handleClosed"
-  >
+  <base-dialog :title="adminId ? `编辑${titleName}` : `新增${titleName}`" @confirm="handleConfirm" @closed="handleClosed">
     <el-form
       ref="ruleFormRef"
       :rules="rules"
@@ -21,46 +17,25 @@
       :hide-required-asterisk="drawerData.isView"
     >
       <el-form-item label="用户姓名" prop="username">
-        <el-input
-          v-model="drawerData.rowData!.username"
-          placeholder="请填写用户姓名"
-          clearable
-        ></el-input>
+        <el-input v-model="drawerData.rowData!.username" placeholder="请填写用户姓名" clearable></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
-        <el-select
-          v-model="drawerData.rowData!.gender"
-          placeholder="请选择性别"
-          clearable
-        >
-          <el-option
-            v-for="item in genderType"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
+        <el-select v-model="drawerData.rowData!.gender" placeholder="请选择性别" clearable>
+          <el-option v-for="item in genderType" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="身份证号" prop="idCard">
-        <el-input
-          v-model="drawerData.rowData!.idCard"
-          placeholder="请填写身份证号"
-          clearable
-        ></el-input>
+        <el-input v-model="drawerData.rowData!.idCard" placeholder="请填写身份证号" clearable></el-input>
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
-        <el-input
-          v-model="drawerData.rowData!.email"
-          placeholder="请填写邮箱"
-          clearable
-        ></el-input>
+        <el-input v-model="drawerData.rowData!.email" placeholder="请填写邮箱" clearable></el-input>
       </el-form-item>
     </el-form>
   </base-dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { ref, reactive } from "vue";
 import { FormInstance } from "@/types/element-plus";
 const props = withDefaults(
   defineProps<{
@@ -72,7 +47,7 @@ const props = withDefaults(
     adminId: null,
     titleName: null,
     isView: false,
-  }
+  },
 );
 interface EmitsType {
   (e: "update:adminId", value: null): void;

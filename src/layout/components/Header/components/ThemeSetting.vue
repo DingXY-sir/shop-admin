@@ -13,8 +13,7 @@
 
 <script setup lang="ts">
 import mittBus from "@/utils/mittBus";
-const theme = new URL("../../../../assets/images/theme.png", import.meta.url)
-  .href;
+const theme = new URL("../../../../assets/images/theme.png", import.meta.url).href;
 const handleTheme = () => {
   mittBus.emit("openThemeDrawer");
 };

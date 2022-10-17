@@ -7,13 +7,7 @@
 -->
 <template>
   <div class="table-search-container">
-    <el-form
-      ref="formRef"
-      :model="searchParam"
-      :inline="true"
-      label-width="100px"
-      :style="`max-width:${maxWidth}px`"
-    >
+    <el-form ref="formRef" :model="searchParam" :inline="true" label-width="100px" :style="`max-width:${maxWidth}px`">
       <template v-for="item in searchList" :key="item.prop">
         <el-form-item :label="item.label">
           <!-- 表单项目 -->
@@ -23,16 +17,9 @@
     </el-form>
     <!-- 查询条件操作 -->
     <div class="flx-item-content operation">
-      <el-button type="primary" :icon="Search" @click="handleSearch"
-        >搜索</el-button
-      >
+      <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
       <el-button :icon="Delete" @click="reset">重置</el-button>
-      <el-button
-        type="primary"
-        @click="searchShow = !searchShow"
-        link
-        v-if="getSearchList.length > maxLength"
-      >
+      <el-button type="primary" @click="searchShow = !searchShow" link v-if="getSearchList.length > maxLength">
         {{ searchShow ? "合并" : "展开" }}
         <el-icon>
           <component :is="searchShow ? ArrowUp : ArrowDown"></component>
@@ -44,14 +31,8 @@
 
 <script setup lang="ts">
 import SearchFormItem from "./components/SearchFormItem.vue";
-import { ref, reactive, computed, watch, onMounted } from "vue";
-import {
-  Delete,
-  Edit,
-  Search,
-  ArrowDown,
-  ArrowUp,
-} from "@element-plus/icons-vue";
+import { ref, computed, onMounted } from "vue";
+import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 
 interface ProTableProps {

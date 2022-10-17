@@ -7,10 +7,7 @@
 -->
 <template>
   <template v-for="menuItem in menuList" :key="menuItem.path">
-    <el-sub-menu
-      v-if="menuItem.children && menuItem.children.length > 0"
-      :index="menuItem.path"
-    >
+    <el-sub-menu v-if="menuItem.children && menuItem.children.length > 0" :index="menuItem.path">
       <template #title>
         <el-icon>
           <component :is="menuItem.icon"></component>

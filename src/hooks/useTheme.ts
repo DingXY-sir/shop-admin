@@ -32,15 +32,12 @@ export const useTheme = () => {
     }
     globalState.setThemeConfig({ ...themeConfig.value, primary: val });
 
-    document.documentElement.style.setProperty(
-      "--el-color-primary",
-      themeConfig.value.primary
-    );
+    document.documentElement.style.setProperty("--el-color-primary", themeConfig.value.primary);
     //颜色变浅
     for (let i = 1; i <= 9; i++) {
       document.documentElement.style.setProperty(
         `--el-color-primary-light-${i}`,
-        `${getLightColor(themeConfig.value.primary, i / 10)}`
+        `${getLightColor(themeConfig.value.primary, i / 10)}`,
       );
     }
   };

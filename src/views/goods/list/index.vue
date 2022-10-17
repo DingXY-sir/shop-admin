@@ -16,22 +16,10 @@
       :border="border"
     >
       <template #tableHeader="scope">
-        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
-          >新增用户</el-button
-        >
-        <el-button type="primary" :icon="Upload" plain @click="batchAdd"
-          >批量添加用户</el-button
-        >
-        <el-button type="primary" :icon="Download" plain @click="downloadFile"
-          >导出用户数据</el-button
-        >
-        <el-button
-          type="danger"
-          :icon="Delete"
-          plain
-          :disabled="!scope.isSelected"
-          @click="batchDelete()"
-        >
+        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
+        <el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
+        <el-button type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
+        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete()">
           批量删除用户
         </el-button>
       </template>
@@ -48,58 +36,20 @@
         />
       </template>
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          :icon="View"
-          @click="openDrawer('查看', scope.row)"
-          >查看</el-button
-        >
-        <el-button
-          type="primary"
-          link
-          :icon="EditPen"
-          @click="openDrawer('编辑', scope.row)"
-          >编辑</el-button
-        >
-        <el-button
-          type="primary"
-          link
-          :icon="Refresh"
-          @click="resetPass(scope.row)"
-          >重置密码</el-button
-        >
-        <el-button
-          type="primary"
-          link
-          :icon="Delete"
-          @click="deleteAccount(scope.row)"
-          >删除</el-button
-        >
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
+        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
+        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">重置密码</el-button>
+        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
       </template>
     </pro-table>
-    <card
-      v-model="isDialogShow"
-      v-model:adminId="adminId"
-      :titleName="titleName"
-      :isView="isView"
-      @success="handleSubmit"
-    />
+    <card v-model="isDialogShow" v-model:adminId="adminId" :titleName="titleName" :isView="isView" @success="handleSubmit" />
   </div>
 </template>
 
 <script setup lang="ts">
 import Card from "./components/card.vue";
-import { ref, onMounted, reactive, computed, watch } from "vue";
-import {
-  View,
-  EditPen,
-  Refresh,
-  Delete,
-  CirclePlus,
-  Download,
-  Upload,
-} from "@element-plus/icons-vue";
+import { ref, reactive } from "vue";
+import { View, EditPen, Refresh, Delete, CirclePlus, Download, Upload } from "@element-plus/icons-vue";
 import type { Form } from "@/types/form";
 import type { TableData } from "./index";
 const searchParam = reactive({}); //查询表单字段

@@ -6,4 +6,4 @@
  * @LastEditTime: 2022-08-19 13:55:37
  */
 
-export const Layout = () => import("@/layout/index.vue") 
+export const Layout = () => import("@/layout/index.vue");

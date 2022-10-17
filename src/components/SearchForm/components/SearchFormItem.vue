@@ -11,15 +11,10 @@
 <template>
   <!-- 文本框 -->
   <template v-if="item.searchType === 'text'">
-    <el-input
-      v-model="searchParam[item.prop!]"
-      :placeholder="`请输入${item.label}`"
-    ></el-input>
+    <el-input v-model="searchParam[item.prop!]" :placeholder="`请输入${item.label}`"></el-input>
   </template>
   <!-- 下拉选择框 -->
-  <template
-    v-if="item.searchType == 'select' || item.searchType == 'multipleSelect'"
-  >
+  <template v-if="item.searchType == 'select' || item.searchType == 'multipleSelect'">
     <el-select
       v-model="searchParam[item.prop!]"
       :placeholder="`请选择${item.label}`"
@@ -35,16 +30,8 @@
     </el-select>
   </template>
   <!-- 下拉树形选择框 -->
-  <template
-    v-if="
-      item.searchType == 'treeSelect' || item.searchType == 'multipleTreeSelect'
-    "
-  >
-    <el-tree-select
-      v-model="searchParam[item.prop!]"
-      :multiple="item.searchType == 'multipleTreeSelect'"
-      :data="item.enum"
-    />
+  <template v-if="item.searchType == 'treeSelect' || item.searchType == 'multipleTreeSelect'">
+    <el-tree-select v-model="searchParam[item.prop!]" :multiple="item.searchType == 'multipleTreeSelect'" :data="item.enum" />
   </template>
   <!-- 日期时间范围选择 -->
   <template v-if="item.searchType == 'daterange'">
@@ -64,6 +51,7 @@
 <script setup lang="ts">
 import { Form } from "@/types/form";
 interface SearchFormItem {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchParam: any;
   item: Partial<Form.SearchFormItem>;
 }

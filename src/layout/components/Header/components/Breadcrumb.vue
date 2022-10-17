@@ -9,11 +9,7 @@
   <div class="bread-container flx-center">
     <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item
-        v-for="item in routes"
-        :key="item.path"
-        :to="{ path: item.path }"
-      >
+      <el-breadcrumb-item v-for="item in routes" :key="item.path" :to="{ path: item.path }">
         {{ item.meta.title }}
       </el-breadcrumb-item>
     </el-breadcrumb>
@@ -25,9 +21,7 @@ import { ArrowRight } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const routes = computed(() => {
-  return router.currentRoute.value.matched.filter(
-    (item) => item.meta.title && item.meta.title !== "首页"
-  );
+  return router.currentRoute.value.matched.filter(item => item.meta.title && item.meta.title !== "首页");
 });
 </script>
 <style lang="scss" scoped>

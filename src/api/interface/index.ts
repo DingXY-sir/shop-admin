@@ -1,5 +1,5 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: DXY
  * @Date: 2022-08-15 10:58:06
  * @LastEditors: DXY
@@ -18,39 +18,39 @@ export interface ResultData<T> {
     status: string;
     message: string;
     data: T;
-  }
+  };
 }
 
 // * 请求Head参数
 export interface HeaderData {
-  access_token: string,
-  jti:string
+  access_token: string;
+  jti: string;
 }
 
 // * 登陆模块
 export namespace Login {
-  export interface IReqLogin{
+  export interface IReqLogin {
     phone: string | number;
     password: string;
     code: string | undefined;
   }
   export interface ReqLoginForm extends IReqLogin {
-    imgCode:any
+    imgCode: any;
   }
-  export interface IReqUserAuth extends IReqLogin{
-    type:number
+  export interface IReqUserAuth extends IReqLogin {
+    type: number;
   }
   export interface ResLogin {
-    access_token:string
+    access_token: string;
   }
-  export interface IResUserAuth{
+  export interface IResUserAuth {
     userId: number;
     roleName: string;
-    roleId:number
+    roleId: number;
   }
   export interface IRoleId {
     userId: number;
-    roleId:number
+    roleId: number;
   }
   export interface IResGetLogin {
     access_token: string;
@@ -61,8 +61,7 @@ export namespace Login {
     scope: string;
     token_type: string;
     type: string;
-    username: string,
-
+    username: string;
   }
 }
 

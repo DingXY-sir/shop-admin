@@ -5,10 +5,10 @@
  * @LastEditors: DXY
  * @LastEditTime: 2022-08-18 14:20:11
  */
-import { defineStore } from "pinia"
-import {HeaderData,Login} from "@/api/interface/index"
+import { defineStore } from "pinia";
+import { HeaderData, Login } from "@/api/interface/index";
 
-export const useUserStore = defineStore('user', {
+export const useUserStore = defineStore("user", {
   state: () => {
     return {
       userToken: {
@@ -17,17 +17,16 @@ export const useUserStore = defineStore('user', {
       },
       user: {
         username: "",
-        
-      }
-    }
+      },
+    };
   },
   actions: {
-    setUserToken(data:HeaderData) {
-      this.userToken = {...data}
+    setUserToken(data: HeaderData) {
+      this.userToken = { ...data };
     },
-    setUserInfo(data:Login.IResGetLogin['username']) {
-      this.user.username = data
-    }
+    setUserInfo(data: Login.IResGetLogin["username"]) {
+      this.user.username = data;
+    },
   },
   //开启数据缓存
   persist: {
@@ -35,8 +34,8 @@ export const useUserStore = defineStore('user', {
     //自定义key
     strategies: [
       {
-        storage:localStorage
-      }
-    ]
-  }
-})
+        storage: localStorage,
+      },
+    ],
+  },
+});

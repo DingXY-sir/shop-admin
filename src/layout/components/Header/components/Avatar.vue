@@ -16,9 +16,7 @@
         <el-dropdown-menu>
           <el-dropdown-item>个人资料</el-dropdown-item>
           <el-dropdown-item>修改密码</el-dropdown-item>
-          <el-dropdown-item divided @click="logout">
-            退出登录
-          </el-dropdown-item>
+          <el-dropdown-item divided @click="logout"> 退出登录 </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -29,8 +27,7 @@
 import { ref, reactive, computed, watch } from "vue";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessageBox } from "element-plus";
-const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url)
-  .href;
+const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url).href;
 const userStore = useUserStore();
 const userName = computed((): string => userStore.user.username);
 const logout = () => {

@@ -37,31 +37,19 @@
       </el-form-item> -->
     </el-form>
     <div>
-      <el-button type="primary" @click="loginHandle(formRef)" :loading="loading"
-        >登陆</el-button
-      >
+      <el-button type="primary" @click="loginHandle(formRef)" :loading="loading">登陆</el-button>
       <el-button @click="resetForm(formRef)">重置</el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import type { ElForm } from "element-plus";
 import { ElNotification } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
-import { Login } from "@/api/interface/index";
 import { getCurrentTimes } from "@/utils/util";
-import {
-  getCode,
-  getUserAuth,
-  getRoleId,
-  getLogin,
-  getLoginMock,
-} from "@/api/modules/login";
-import { Md5 } from "ts-md5";
-import { useUserStore } from "@/store/modules/user";
-import { ElMessage } from "element-plus";
+import { getLoginMock } from "@/api/modules/login";
 import { useRouter, useRoute } from "vue-router";
 //FormInstance 获取表单实例类型
 type FormInstance = InstanceType<typeof ElForm>;
@@ -97,7 +85,7 @@ const router = useRouter();
 const route = useRoute();
 const loginHandle = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate(async (valid) => {
+  formEl.validate(async valid => {
     if (!valid) return;
     loading.value = true;
     try {
