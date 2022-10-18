@@ -205,8 +205,12 @@ const openDrawer = (name: string, row?: any) => {
 const handleSubmit = () => {
   isDialogShow.value = false;
 };
-const resetPass = (row: any) => {};
-const deleteAccount = (row: any) => {};
+const resetPass = (row: any) => {
+  console.log(row);
+};
+const deleteAccount = (row: any) => {
+  console.log(row);
+};
 //表单内元素事件
 const handleSwitchChange = (e: number) => {
   console.log(e);

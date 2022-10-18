@@ -53,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
 const prop = defineProps({
   modelValue: {
     type: Array,

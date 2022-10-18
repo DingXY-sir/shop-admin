@@ -28,7 +28,6 @@ class RequestHttp {
       (config: AxiosRequestConfig) => {
         // 在发送请求之前做些什么
         const userStore = useUserStore();
-        console.log(userStore, config, "获取token");
         // 如果当前请求不需要loading，在api服务中通过指定的第三个参数 {headers:{noLoading:true}}来取消loading
         config.headers!.noLoading || showFullScreenLoading();
         return { ...config, headers: { ...config.headers, "x-access-token": userStore.user.token } };

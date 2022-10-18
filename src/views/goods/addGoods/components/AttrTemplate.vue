@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { ElMessage } from "element-plus";
-import { ref, reactive, computed, watch, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import type { Goods } from "@/types/goods";
 import { getAttrTemplate } from "@/api/modules/shop";
 

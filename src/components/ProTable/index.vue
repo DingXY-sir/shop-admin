@@ -18,7 +18,7 @@
     <!-- 表格头部 -->
     <div class="table_header flx-justify-between">
       <div class="header_button_lf">
-        <slot name="tableHeader"></slot>
+        <slot name="tableHeader" :isSelected="isSelected" :selectedList="selectedList" :selectedListIds="selectedListIds"></slot>
       </div>
       <!-- 表格功能性 -->
       <div class="header_button_rt">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- 表格主体 -->
-    <el-table height="575" :data="tableData" :border="border" :row-key="getRowKeys">
+    <el-table height="575" :data="tableData" :border="border" :row-key="getRowKeys" @selection-change="selectionChange">
       <template v-for="item in tableColumns" :key="item">
         <!-- 单选或多选 -->
         <el-table-column
@@ -78,6 +78,7 @@ import { ref } from "vue";
 import { Refresh, Operation, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 import { useTable } from "@/hooks/useTable";
+import { useSelection } from "@/hooks/useSelection";
 
 //表格功能
 const isShowSearch = ref<boolean>(true);
@@ -89,6 +90,7 @@ interface Table {
   getSearchList: Partial<Form.SearchFormItem>[]; //查询表单配置项
   border: boolean;
   tableColumns: Partial<Form.SearchFormItem>[]; //表格配置项
+  selectedId?: string; //初始化多选列表id，（默认为id，可修改）
   // * 使用hooks，接受参数（requestApi、initParams）
   requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
   initParams: any; // 初始化请求参数 ==> 非必传（默认为{}）
@@ -96,6 +98,7 @@ interface Table {
 
 const prop = withDefaults(defineProps<Table>(), {
   border: true,
+  selectedId: "id",
   // initParams: {},
 });
 /**
@@ -110,6 +113,11 @@ const { searchParams, tableData, getTableList, reset, pageable, handleSizeChange
 const getRowKeys = (row: { id: string }) => {
   return row.id;
 };
+
+/**
+ * 使用多选，hooks
+ */
+const { isSelected, selectedList, selectedListIds, selectionChange } = useSelection(prop.selectedId);
 //暴露查询表单方法和查询参数
 defineExpose({ searchParams, getTableList });
 </script>

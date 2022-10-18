@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 import { Grid, CircleCloseFilled } from "@element-plus/icons-vue";
-import { ref, reactive, computed, watch, PropType, nextTick } from "vue";
+import { ref, reactive, watch, PropType, nextTick } from "vue";
 import type { Goods } from "@/types/goods";
 import type { FormRules, FormInstance } from "element-plus";
 import { getMultiAttrList } from "@/api/modules/shop";
@@ -80,21 +80,21 @@ const props = defineProps({
   },
 });
 
-interface multiAttr {
-  headers: Array<{ label: string; width: number }>;
-  values: Array<{
-    pic: string;
-    price: number;
-    cost_price: number;
-    or_price: number;
-    repertory: number;
-    product_id: number;
-    weight: number;
-    volume: number;
-    color: string;
-    size: string;
-  }>;
-}
+// interface multiAttr {
+//   headers: Array<{ label: string; width: number }>;
+//   values: Array<{
+//     pic: string;
+//     price: number;
+//     cost_price: number;
+//     or_price: number;
+//     repertory: number;
+//     product_id: number;
+//     weight: number;
+//     volume: number;
+//     color: string;
+//     size: string;
+//   }>;
+// }
 
 interface emitType {
   (e: "confim", value: Goods.MultiAttrList): void;
@@ -179,6 +179,7 @@ const handleCreateAttr = async () => {
 /**
  * 立即生成
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const multiAttrInfo = reactive({
   headers: [
     { label: "内存", width: 155, key: "size" },

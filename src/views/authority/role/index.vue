@@ -26,7 +26,14 @@
         <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
         <el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
         <el-button type="primary" :icon="Download" plain v-debounce="handleExport">导出用户数据</el-button>
-        <el-button type="danger" :icon="Delete" plain :disabled="scope.isSelected" v-debounce="batchDelete">
+        <el-button
+          type="danger"
+          :icon="Delete"
+          plain
+          :disabled="!scope.isSelected"
+          v-debounce="batchDelete"
+          @click="batchDelected(scope.selectedListIds)"
+        >
           批量删除用户
         </el-button>
       </template>
@@ -104,6 +111,7 @@ const handleSwitchOpen = (id: number, status: string) => {
 const isDialogShow = ref(false);
 const titleName = ref("授权");
 const adminId = ref<number | null>(null);
+
 const openDrawer = (name: string, row?: any) => {
   if (name === "新增") {
     isDialogShow.value = true;
@@ -116,6 +124,13 @@ const openDrawer = (name: string, row?: any) => {
     isDialogShow.value = true;
     adminId.value = row.id;
   }
+};
+const batchDelected = (ids: string[]) => {
+  ElMessage({
+    type: "success",
+    message: `选中当前数据id为${ids}`,
+    showClose: true,
+  });
 };
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resetPass = (row: any) => {};

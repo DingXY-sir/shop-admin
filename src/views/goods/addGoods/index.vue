@@ -73,7 +73,7 @@
 import AttrTable from "./components/AttrTable.vue";
 import AttrTemplate from "./components/AttrTemplate.vue";
 import AttrEdit from "./components/AttrEdit.vue";
-import { ref, reactive, computed, watch, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import type { Goods } from "@/types/goods";
 
 // const activity = ref([
