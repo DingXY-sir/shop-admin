@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-09-28 09:46:32
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-01 19:15:24
+ * @LastEditTime: 2022-10-18 09:28:26
  */
 import { Table } from "@/types/table";
-import { reactive, computed, watch, onMounted, toRefs } from "vue";
+import { reactive, onMounted, toRefs } from "vue";
 
 /**
  * @params {Function} api 获取表格数据api方法，（必传）
@@ -18,6 +18,7 @@ export const useTable = (
   api: (params: any) => Promise<any>,
   initParams: Object = {},
   isPageable: Boolean = true,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dataCallBack?: (data: any) => any,
 ) => {
   const state = reactive<Table.TableStateProps>({
@@ -42,12 +43,11 @@ export const useTable = (
   /** 获取table列表数据*/
   const getTableList = async () => {
     try {
-      console.log("获取数据");
       Object.assign(state.totalParams, initParams, isPageable ? state.pageable : {});
       let data = await api(state.totalParams);
-      state.tableData = data;
+      state.tableData = data.data.data.list.data;
       //将请求返回的分页数据解构
-      const { pageNum, pageSize, total } = data;
+      const { pageNum, pageSize, total } = data.data.data.list;
       isPageable && updatePageable({ pageNum, pageSize, total });
     } catch (error) {
       console.log(error);
@@ -58,6 +58,7 @@ export const useTable = (
   const search = () => {
     state.totalParams = {};
     Object.assign(state.totalParams, initParams, isPageable ? state.pageable : {});
+    console.log("查询方法", state.totalParams);
     getTableList();
   };
 

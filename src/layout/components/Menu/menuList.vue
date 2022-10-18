@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:00:31
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 16:08:48
+ * @LastEditTime: 2022-10-17 16:22:37
 -->
 <template>
   <template v-for="menuItem in menuList" :key="menuItem.path">
@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
 import { MenuOptions } from "@/api/interface/index";
 import { useTagsStore } from "@/store/modules/tags";
 defineProps<{ menuList: Array<MenuOptions> }>();

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 10:29:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-08 09:41:37
+ * @LastEditTime: 2022-10-18 09:27:45
 -->
 <template>
   <div class="table-search-container">
@@ -17,7 +17,7 @@
     </el-form>
     <!-- 查询条件操作 -->
     <div class="flx-item-content operation">
-      <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
+      <el-button type="primary" :icon="Search" @click="search">搜索</el-button>
       <el-button :icon="Delete" @click="reset">重置</el-button>
       <el-button type="primary" @click="searchShow = !searchShow" link v-if="getSearchList.length > maxLength">
         {{ searchShow ? "合并" : "展开" }}
@@ -39,6 +39,7 @@ interface ProTableProps {
   searchParam: any; //表单参数
   getSearchList: Partial<Form.SearchFormItem>[]; //查询表单数组数据
   reset: () => void;
+  search: () => void;
 }
 const prop = withDefaults(defineProps<ProTableProps>(), {
   searchParam: () => {},
@@ -57,10 +58,10 @@ const searchList = computed((): Partial<Form.SearchFormItem>[] => {
   if (searchShow.value) return prop.getSearchList;
   return prop.getSearchList.slice(0, maxLength.value);
 });
-
-const handleSearch = () => {
-  console.log(prop.searchParam);
-};
+// *查询方法
+// const handleSearch = () => {
+//   console.log(prop.searchParam);
+// };
 </script>
 <style lang="scss" scoped>
 .table-search-container {

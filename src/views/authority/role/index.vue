@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-09 14:57:59
+ * @LastEditTime: 2022-10-17 22:19:38
 -->
 
 <template>
@@ -17,6 +17,7 @@
     <pro-table
       ref="tableRef"
       :initParams="initParams"
+      :requestApi="getRoleList"
       :getSearchList="getSearchList"
       :tableColumns="tableColumns"
       :border="border"
@@ -55,7 +56,7 @@ import { View, EditPen, Refresh, Delete, CirclePlus, Download, Upload } from "@e
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
 import { ElMessage } from "element-plus";
-
+import { getRoleList } from "@/api/modules/role";
 //表单查询条件
 const getSearchList = ref([
   { searchType: "text", label: "角色名称", prop: "name", isShow: true },
@@ -93,10 +94,12 @@ const initParams = reactive({
 const border = true;
 //获取ProTable组件实例
 const tableRef = ref();
+
 onMounted(() => {});
 const handleSwitchOpen = (id: number, status: string) => {
   console.log(id, status);
 };
+
 //card操作
 const isDialogShow = ref(false);
 const titleName = ref("授权");
@@ -114,7 +117,10 @@ const openDrawer = (name: string, row?: any) => {
     adminId.value = row.id;
   }
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resetPass = (row: any) => {};
+
+const batchAdd = () => {};
 
 //弹框成功操作
 const handleSuccess = () => {

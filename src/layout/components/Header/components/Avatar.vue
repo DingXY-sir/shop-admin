@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-14 11:01:24
+ * @LastEditTime: 2022-10-17 16:21:30
 -->
 <template>
   <div class="avatar-container flx-items-center">
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessageBox } from "element-plus";
 const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url).href;

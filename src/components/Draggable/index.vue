@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-09-12 19:08:08
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-11 11:09:55
+ * @LastEditTime: 2022-10-17 16:28:51
 -->
 
 <template>
@@ -34,6 +34,7 @@ onMounted(() => {
     console.error("容器不存在");
     return false;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sortable = new Sortable(draggableContainer.value, {
     animation: 150,
     onUpdate: e => {
@@ -41,7 +42,6 @@ onMounted(() => {
       if (e.oldIndex && e.newIndex) {
         //删除当前元素
         const list = props.modelValue.splice(0); // 子组件不能直接修改父组件内容
-
         const item = list.splice(e.oldIndex, 1)[0];
         //添加元素重新排列
         list.splice(e.newIndex, 0, item);

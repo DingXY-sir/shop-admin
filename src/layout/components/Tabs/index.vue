@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 13:19:46
+ * @LastEditTime: 2022-10-17 16:22:15
 -->
 <template>
   <div class="tabs-container flx-items-center">
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
 import { useTagsStore } from "@/store/modules/tags";
 import { TagItem } from "@/types/tags";
 import { useRoute, useRouter } from "vue-router";

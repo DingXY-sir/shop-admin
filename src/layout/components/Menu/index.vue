@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-12 20:35:41
+ * @LastEditTime: 2022-10-17 16:22:31
 -->
 <template>
   <div class="container">
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import { useMenuStore } from "@/store/modules/menu";
 import subMenu from "./menuList.vue";
 import { useRoute } from "vue-router";

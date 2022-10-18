@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-10 15:41:23
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-14 11:26:24
+ * @LastEditTime: 2022-10-17 16:20:57
 -->
 <template>
   <el-drawer v-model="themeVisible" title="布局设置" size="300px">
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import { useGlobalState } from "@/store/index";
 import { DEFAULT_COLOR } from "@/config/config";
 import { useTheme } from "@/hooks/useTheme";

@@ -30,7 +30,15 @@ export const logOut = () => {
 };
 
 // mock
+interface LoginData {
+  userInfo: {
+    address: string;
+    email: string;
+    token: string;
+    username: string;
+  };
+}
 //登陆接口
 export const getLoginMock = (params: { username: string; password: string }) => {
-  return http.post("/login", qs.stringify(params));
+  return http.post<LoginData>("/login", qs.stringify(params));
 };

@@ -3,11 +3,17 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-04 21:18:06
+ * @LastEditTime: 2022-10-17 22:04:34
 -->
 <template>
   <!-- 查询 -->
-  <search-form :searchParam="initParams" :getSearchList="getSearchList" :reset="reset" v-show="isShowSearch"></search-form>
+  <search-form
+    :searchParam="initParams"
+    :getSearchList="getSearchList"
+    :reset="reset"
+    :search="search"
+    v-show="isShowSearch"
+  ></search-form>
   <div class="pro-table-container">
     <!-- 表格头部 -->
     <div class="table_header flx-justify-between">
@@ -83,10 +89,8 @@ interface Table {
   getSearchList: Partial<Form.SearchFormItem>[]; //查询表单配置项
   border: boolean;
   tableColumns: Partial<Form.SearchFormItem>[]; //表格配置项
-  // hooks
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // * 使用hooks，接受参数（requestApi、initParams）
   requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initParams: any; // 初始化请求参数 ==> 非必传（默认为{}）
 }
 
@@ -97,8 +101,10 @@ const prop = withDefaults(defineProps<Table>(), {
 /**
  * 使用Table，hooks
  * */
-const { searchParams, tableData, getTableList, reset, updatePageable, pageable, handleSizeChange, handleCurrentChange } =
-  useTable(prop.requestApi, prop.initParams);
+const { searchParams, tableData, getTableList, reset, pageable, handleSizeChange, handleCurrentChange, search } = useTable(
+  prop.requestApi,
+  prop.initParams,
+);
 
 //获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
 const getRowKeys = (row: { id: string }) => {

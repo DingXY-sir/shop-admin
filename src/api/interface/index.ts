@@ -23,8 +23,8 @@ export interface ResultData<T> {
 
 // * 请求Head参数
 export interface HeaderData {
-  access_token: string;
-  jti: string;
+  token: string;
+  userName: string;
 }
 
 // * 登陆模块

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-18 10:31:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-14 10:12:55
+ * @LastEditTime: 2022-10-17 16:21:45
 -->
 <template>
   <div class="collapse-container flx-items-center">
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useMenuStore } from "@/store/modules/menu";
 
 const menuStore = useMenuStore();

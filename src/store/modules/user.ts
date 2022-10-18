@@ -6,26 +6,20 @@
  * @LastEditTime: 2022-08-18 14:20:11
  */
 import { defineStore } from "pinia";
-import { HeaderData, Login } from "@/api/interface/index";
+import { HeaderData } from "@/api/interface/index";
 
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
-      userToken: {
-        access_token: "",
-        jti: "",
-      },
       user: {
-        username: "",
+        token: "",
+        userName: "",
       },
     };
   },
   actions: {
-    setUserToken(data: HeaderData) {
-      this.userToken = { ...data };
-    },
-    setUserInfo(data: Login.IResGetLogin["username"]) {
-      this.user.username = data;
+    setUserInfo(data: HeaderData) {
+      this.user = { ...data };
     },
   },
   //开启数据缓存

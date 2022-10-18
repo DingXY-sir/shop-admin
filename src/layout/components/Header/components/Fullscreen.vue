@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-18 15:23:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-14 10:58:49
+ * @LastEditTime: 2022-10-17 16:21:51
 -->
 <template>
   <div class="fullscreen-container flx-items-center">
@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
 import { useFullscreen } from "@vueuse/core";
 const { isFullscreen, toggle } = useFullscreen();
 </script>

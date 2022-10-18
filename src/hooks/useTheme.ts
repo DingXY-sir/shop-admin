@@ -3,13 +3,13 @@
  * @Author: DXY
  * @Date: 2022-10-10 17:10:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 17:50:58
+ * @LastEditTime: 2022-10-17 16:20:09
  */
 import { computed, onBeforeMount } from "vue";
 import { ElMessage } from "element-plus";
 import { useGlobalState } from "@/store/index";
 import { DEFAULT_COLOR } from "@/config/config";
-import { getDarkColor, getLightColor } from "@/utils/theme";
+import { getLightColor } from "@/utils/theme";
 
 export const useTheme = () => {
   const globalState = useGlobalState();

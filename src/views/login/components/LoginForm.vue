@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 14:09:56
+ * @LastEditTime: 2022-10-17 21:17:58
 -->
 <template>
   <div class="login-form-container">
@@ -38,7 +38,7 @@
     </el-form>
     <div>
       <el-button type="primary" @click="loginHandle(formRef)" :loading="loading">登陆</el-button>
-      <el-button @click="resetForm(formRef)">重置</el-button>
+      <el-button @click="resetForm()">重置</el-button>
     </div>
   </div>
 </template>
@@ -51,6 +51,7 @@ import { Unlock, User } from "@element-plus/icons-vue";
 import { getCurrentTimes } from "@/utils/util";
 import { getLoginMock } from "@/api/modules/login";
 import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/store/modules/user";
 //FormInstance 获取表单实例类型
 type FormInstance = InstanceType<typeof ElForm>;
 const formRef = ref<FormInstance>();
@@ -94,29 +95,15 @@ const loginHandle = (formEl: FormInstance | undefined) => {
         password: loginForm.password,
       };
       const res = await getLoginMock(params);
-      console.log(res);
+      const { token, username: userName } = res.data.data.userInfo;
 
-      //登陆逻辑
-      // const params = {
-      //   ...loginForm,
-      //   type: 0,
-      //   password: Md5.hashStr(loginForm.password),
-      // };
-      // const res = await getUserAuth(params);
-      // const { roleId, userId } = res?.data?.data[0];
-      // const resRoleId = await getRoleId({ roleId, userId });
-      // const resLogin = await getLogin({
-      //   ...loginForm,
-      //   password: Md5.hashStr(loginForm.password),
-      // });
-      // //使用pinia储存token、jti
-      // const userStore = useUserStore();
-      // userStore.setUserToken({
-      //   access_token: resLogin.data.data.access_token,
-      //   jti: resLogin.data.data.jti,
-      // });
-      // userStore.setUserInfo(resLogin.data.data.username);
-      // ElMessage.success("登录成功！");
+      //使用pinia储存token、username
+      const userStore = useUserStore();
+      userStore.setUserInfo({
+        token,
+        userName,
+      });
+
       //通过路由拦截记录未登录时跳转的地址
       let redirect = route.query.redirect || "/home";
       if (typeof redirect !== "string") {
@@ -136,7 +123,10 @@ const loginHandle = (formEl: FormInstance | undefined) => {
 };
 
 //重置表单
-const resetForm = (formEl: FormInstance | undefined) => {
+// const resetForm = (formEl: FormInstance | undefined) => {
+//   // ElMessage.error("nihao");
+// };
+const resetForm = () => {
   // ElMessage.error("nihao");
 };
 

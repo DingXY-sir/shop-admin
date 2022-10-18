@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 14:16:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 10:29:13
+ * @LastEditTime: 2022-10-17 16:21:40
 -->
 <template>
   <div class="bread-container flx-center">
@@ -16,9 +16,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
 import { ArrowRight } from "@element-plus/icons-vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 const router = useRouter();
 const routes = computed(() => {
   return router.currentRoute.value.matched.filter(item => item.meta.title && item.meta.title !== "首页");

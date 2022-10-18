@@ -1,4 +1,4 @@
-/* eslint-disable no-tabs */
+/* eslint-disable prettier/prettier */
 // @see: http://eslint.cn
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:prettier/recommended",
+    "plugin:prettier/recommended"
   ],
   /*
    * "off" 或 0    ==>  关闭规则
@@ -44,7 +44,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "error", // 禁止定义未使用的变量
     "@typescript-eslint/no-inferrable-types": "off", // 可以轻松推断的显式类型可能会增加不必要的冗长
     "@typescript-eslint/no-namespace": "off", // 禁止使用自定义 TypeScript 模块和命名空间。
-    //"@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
+    "@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
     "@typescript-eslint/ban-ts-ignore": "off", // 禁止使用 @ts-ignore
     "@typescript-eslint/ban-types": "off", // 禁止使用特定类型
     "@typescript-eslint/explicit-function-return-type": "off", // 不允许对初始化为数字、字符串或布尔值的变量或参数进行显式类型声明

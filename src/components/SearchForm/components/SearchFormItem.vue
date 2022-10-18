@@ -51,10 +51,10 @@
 <script setup lang="ts">
 import { Form } from "@/types/form";
 interface SearchFormItem {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchParam: any;
   item: Partial<Form.SearchFormItem>;
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const prop = defineProps<SearchFormItem>();
 </script>
 <style lang="scss" scoped></style>
