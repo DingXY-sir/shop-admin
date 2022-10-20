@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 22:19:38
+ * @LastEditTime: 2022-10-20 14:14:04
 -->
 
 <template>
@@ -63,7 +63,8 @@ import { View, EditPen, Refresh, Delete, CirclePlus, Download, Upload } from "@e
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
 import { ElMessage } from "element-plus";
-import { getRoleList } from "@/api/modules/role";
+import { getRoleList, handleDelete } from "@/api/modules/role";
+import { useMessageBox } from "@/hooks/useMessageBox";
 //表单查询条件
 const getSearchList = ref([
   { searchType: "text", label: "角色名称", prop: "name", isShow: true },
@@ -103,11 +104,12 @@ const border = true;
 const tableRef = ref();
 
 onMounted(() => {});
+// *启用/禁用
 const handleSwitchOpen = (id: number, status: string) => {
   console.log(id, status);
 };
 
-//card操作
+//*新增/编辑card操作
 const isDialogShow = ref(false);
 const titleName = ref("授权");
 const adminId = ref<number | null>(null);
@@ -125,12 +127,16 @@ const openDrawer = (name: string, row?: any) => {
     adminId.value = row.id;
   }
 };
-const batchDelected = (ids: string[]) => {
-  ElMessage({
-    type: "success",
-    message: `选中当前数据id为${ids}`,
-    showClose: true,
-  });
+//*删除
+const batchDelected = async (ids: Array<number | string>) => {
+  // 二次确认弹窗
+  await useMessageBox(handleDelete, { id: ids }, "删除");
+  // const res = await handleDelete({ id: ids });
+  // ElMessage({
+  //   type: "success",
+  //   message: `${res.data.message}`,
+  //   showClose: true,
+  // });
 };
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resetPass = (row: any) => {};
