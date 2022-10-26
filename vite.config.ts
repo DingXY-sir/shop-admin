@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 13:30:18
+ * @LastEditTime: 2022-10-26 16:58:14
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -15,6 +15,7 @@ import eslintPlugin from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./",
   build: {
     target: "esnext",
   },
