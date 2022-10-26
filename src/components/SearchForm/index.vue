@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 10:29:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-18 09:27:45
+ * @LastEditTime: 2022-10-26 16:45:29
 -->
 <template>
   <div class="table-search-container">
@@ -19,7 +19,7 @@
     <div class="flx-item-content operation">
       <el-button type="primary" :icon="Search" @click="search">搜索</el-button>
       <el-button :icon="Delete" @click="reset">重置</el-button>
-      <el-button type="primary" @click="searchShow = !searchShow" link v-if="getSearchList.length > maxLength">
+      <el-button type="primary" @click="searchShow = !searchShow" link v-if="columns.length > maxLength">
         {{ searchShow ? "合并" : "展开" }}
         <el-icon>
           <component :is="searchShow ? ArrowUp : ArrowDown"></component>
@@ -31,19 +31,19 @@
 
 <script setup lang="ts">
 import SearchFormItem from "./components/SearchFormItem.vue";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 
 interface ProTableProps {
   searchParam: any; //表单参数
-  getSearchList: Partial<Form.SearchFormItem>[]; //查询表单数组数据
+  columns: Partial<Form.SearchFormItem>[]; //查询表单数组数据
   reset: () => void;
   search: () => void;
 }
 const prop = withDefaults(defineProps<ProTableProps>(), {
   searchParam: () => {},
-  getSearchList: () => [],
+  columns: () => [],
 });
 
 const maxLength = ref(4);
@@ -51,17 +51,11 @@ const maxWidth = ref(1260);
 
 const searchShow = ref(false);
 
-onMounted(() => {});
-
-//根据当前是否展开搜索项展示
+//根据当前是否展开搜索项展示 （获取搜索列表）
 const searchList = computed((): Partial<Form.SearchFormItem>[] => {
-  if (searchShow.value) return prop.getSearchList;
-  return prop.getSearchList.slice(0, maxLength.value);
+  if (searchShow.value) return prop.columns;
+  return prop.columns.slice(0, maxLength.value);
 });
-// *查询方法
-// const handleSearch = () => {
-//   console.log(prop.searchParam);
-// };
 </script>
 <style lang="scss" scoped>
 .table-search-container {

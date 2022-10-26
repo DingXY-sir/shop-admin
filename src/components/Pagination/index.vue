@@ -3,14 +3,14 @@
  * @Author: DXY
  * @Date: 2022-08-25 09:11:37
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 16:28:30
+ * @LastEditTime: 2022-10-20 16:44:14
 -->
 
 <template>
   <el-pagination
     :current-page="pageable.pageNum"
     :page-size="pageable.pageSize"
-    :page-sizes="[10, 20, 50, 100]"
+    :page-sizes="[10, 25, 50, 100]"
     :background="background"
     layout="total, sizes, prev, pager, next, jumper"
     :total="pageable.total"

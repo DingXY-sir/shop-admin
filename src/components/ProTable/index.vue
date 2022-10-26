@@ -3,13 +3,13 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 22:04:34
+ * @LastEditTime: 2022-10-26 16:54:30
 -->
 <template>
   <!-- 查询 -->
   <search-form
-    :searchParam="initParams"
-    :getSearchList="getSearchList"
+    :searchParam="searchParam"
+    :columns="searchColumns"
     :reset="reset"
     :search="search"
     v-show="isShowSearch"
@@ -72,7 +72,6 @@
     <Pagination :pageable="pageable" :handleSizeChange="handleSizeChange" :handleCurrentChange="handleCurrentChange" />
   </div>
 </template>
-
 <script setup lang="ts">
 import { ref } from "vue";
 import { Refresh, Operation, ArrowUp } from "@element-plus/icons-vue";
@@ -87,27 +86,41 @@ const openColSetting = () => {};
 
 //表格数据
 interface Table {
-  getSearchList: Partial<Form.SearchFormItem>[]; //查询表单配置项
   border: boolean;
-  tableColumns: Partial<Form.SearchFormItem>[]; //表格配置项
+  columns: Partial<Form.SearchFormItem>[]; //表格配置项
   selectedId?: string; //初始化多选列表id，（默认为id，可修改）
   // * 使用hooks，接受参数（requestApi、initParams）
   requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
   initParams: any; // 初始化请求参数 ==> 非必传（默认为{}）
 }
-
 const prop = withDefaults(defineProps<Table>(), {
   border: true,
   selectedId: "id",
-  // initParams: {},
 });
+
 /**
- * 使用Table，hooks
+ * 使用useTable（Hooks）
  * */
-const { searchParams, tableData, getTableList, reset, pageable, handleSizeChange, handleCurrentChange, search } = useTable(
-  prop.requestApi,
-  prop.initParams,
-);
+const { searchParam, searchInitParams, tableData, getTableList, reset, pageable, handleSizeChange, handleCurrentChange, search } =
+  useTable(prop.requestApi, prop.initParams);
+
+// * 设置单元格列
+const tableColumns = ref<Partial<Form.SearchFormItem>[]>();
+tableColumns.value = prop.columns.map(item => {
+  return {
+    ...item,
+    isShow: item.isShow ?? true,
+  };
+});
+
+// * 过滤需要搜索的配置项 (需要搜索获取表数据参数项)
+const searchColumns = tableColumns.value.filter(item => item.search);
+// * 设置搜索默认值
+searchColumns.forEach((column: Partial<Form.SearchFormItem>) => {
+  if (column.searchInitParams !== undefined && column.searchInitParams !== null) {
+    searchInitParams[column.prop!] = column.searchInitParams;
+  }
+});
 
 //获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
 const getRowKeys = (row: { id: string }) => {
@@ -119,7 +132,7 @@ const getRowKeys = (row: { id: string }) => {
  */
 const { isSelected, selectedList, selectedListIds, selectionChange } = useSelection(prop.selectedId);
 //暴露查询表单方法和查询参数
-defineExpose({ searchParams, getTableList });
+defineExpose({ searchParam, getTableList });
 </script>
 <style lang="scss" scoped>
 .pro-table-container {

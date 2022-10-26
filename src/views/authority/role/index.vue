@@ -3,12 +3,12 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-20 14:14:04
+ * @LastEditTime: 2022-10-20 16:15:35
 -->
 
 <template>
   <div
-    class="viev-container"
+    class="view-container"
     v-waterMarker="{
       text: 'admin',
       textColor: 'rgba(180, 180, 180, 0.6)',
@@ -131,12 +131,8 @@ const openDrawer = (name: string, row?: any) => {
 const batchDelected = async (ids: Array<number | string>) => {
   // 二次确认弹窗
   await useMessageBox(handleDelete, { id: ids }, "删除");
-  // const res = await handleDelete({ id: ids });
-  // ElMessage({
-  //   type: "success",
-  //   message: `${res.data.message}`,
-  //   showClose: true,
-  // });
+  // 刷新列表数据
+  tableRef.value.getTableList();
 };
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resetPass = (row: any) => {};

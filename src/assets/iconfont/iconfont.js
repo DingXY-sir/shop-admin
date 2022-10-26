@@ -1,5 +1,5 @@
 !(function (e) {
-  var t,
+  let t,
     n,
     c,
     l,

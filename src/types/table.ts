@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-09-28 13:31:56
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-28 13:51:24
+ * @LastEditTime: 2022-10-24 11:16:16
  */
 export namespace Table {
   export interface Pageable {
@@ -16,7 +16,7 @@ export namespace Table {
     // searchParams: {
     //   [key:string]:any
     // },
-    searchParams: Record<string, any>;
+    searchParam: Record<string, any>;
     searchInitParams: {
       [key: string]: any;
     };

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-09-01 15:23:17
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-01 16:04:19
+ * @LastEditTime: 2022-10-20 15:52:26
  */
 
 export namespace User {
@@ -27,5 +27,17 @@ export namespace User {
   export interface ResRoleList {
     list: Array<ReqList>;
     total: number;
+  }
+  export interface AllList {
+    address: string;
+    age: number;
+    avatar: string;
+    createTime: string;
+    email: string;
+    gender: 1 | 2;
+    id: string;
+    idCard: string;
+    status: 0 | 1;
+    username: string;
   }
 }

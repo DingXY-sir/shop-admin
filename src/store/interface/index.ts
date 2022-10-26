@@ -7,4 +7,5 @@
  */
 export interface ThemeConfig {
   primary: string;
+  isDark: boolean;
 }

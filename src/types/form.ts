@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 11:48:50
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-01 10:16:33
+ * @LastEditTime: 2022-10-24 10:29:04
  */
 export namespace Form {
   export interface EnumProp {
@@ -35,6 +35,8 @@ export namespace Form {
     fixed: FixedProp; //固定列
     isShow: boolean; //是否在表格中展示
     enum: EnumProp;
+    search: boolean; //是否为搜索项
+    searchInitParams: any;
   }
   export interface Pageable {
     page: number;

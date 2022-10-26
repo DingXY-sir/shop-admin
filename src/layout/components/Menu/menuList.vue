@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:00:31
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 16:22:37
+ * @LastEditTime: 2022-10-22 11:35:50
 -->
 <template>
   <template v-for="menuItem in menuList" :key="menuItem.path">
@@ -14,7 +14,7 @@
         </el-icon>
         <span>{{ menuItem.title }}</span>
       </template>
-      <menu-list :menuList="menuItem.children" />
+      <MenuList :menuList="menuItem.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="menuItem.path" @click="tagHandle(menuItem)">
       <el-icon>

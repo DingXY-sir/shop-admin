@@ -17,7 +17,7 @@ import { ref, onMounted } from "vue";
 import type { PropType } from "vue";
 import Sortable from "sortablejs";
 
-const draggableContainer = ref<HTMLDivElement | null>(null);
+const draggableContainer = ref<null>(null);
 const props = defineProps({
   modelValue: {
     type: Array as PropType<any[]>,
@@ -34,7 +34,7 @@ onMounted(() => {
     console.error("容器不存在");
     return false;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const sortable = new Sortable(draggableContainer.value, {
     animation: 150,
     onUpdate: e => {
@@ -50,6 +50,7 @@ onMounted(() => {
       }
     },
   });
+  console.log(sortable);
 });
 </script>
 <style lang="scss" scoped></style>
