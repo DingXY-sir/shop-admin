@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-23 10:29:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-26 16:45:29
+ * @LastEditTime: 2022-10-27 13:55:43
 -->
 <template>
-  <div class="table-search-container">
+  <div class="table-search-container card">
     <el-form ref="formRef" :model="searchParam" :inline="true" label-width="100px" :style="`max-width:${maxWidth}px`">
       <template v-for="item in searchList" :key="item.prop">
         <el-form-item :label="item.label">
@@ -37,7 +37,7 @@ import { Form } from "@/types/form";
 
 interface ProTableProps {
   searchParam: any; //表单参数
-  columns: Partial<Form.SearchFormItem>[]; //查询表单数组数据
+  columns: Partial<Form.Column>[]; //查询表单数组数据
   reset: () => void;
   search: () => void;
 }
@@ -52,7 +52,7 @@ const maxWidth = ref(1260);
 const searchShow = ref(false);
 
 //根据当前是否展开搜索项展示 （获取搜索列表）
-const searchList = computed((): Partial<Form.SearchFormItem>[] => {
+const searchList = computed((): Partial<Form.Column>[] => {
   if (searchShow.value) return prop.columns;
   return prop.columns.slice(0, maxLength.value);
 });
@@ -61,7 +61,7 @@ const searchList = computed((): Partial<Form.SearchFormItem>[] => {
 .table-search-container {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dashed #ccc;
+  margin-bottom: 4px;
   :deep(.el-form) {
     max-width: 1260px;
     .el-form-item {

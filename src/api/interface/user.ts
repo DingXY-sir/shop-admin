@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-09-01 15:23:17
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-20 15:52:26
+ * @LastEditTime: 2022-10-27 14:55:40
  */
 
 export namespace User {
@@ -39,5 +39,10 @@ export namespace User {
     idCard: string;
     status: 0 | 1;
     username: string;
+  }
+  export interface UserDepartment {
+    id: number;
+    name: string;
+    children: Array<UserDepartment>;
   }
 }

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-26 16:54:30
+ * @LastEditTime: 2022-10-27 17:10:15
 -->
 <template>
   <!-- 查询 -->
@@ -14,7 +14,7 @@
     :search="search"
     v-show="isShowSearch"
   ></search-form>
-  <div class="pro-table-container">
+  <div class="pro-table-container card">
     <!-- 表格头部 -->
     <div class="table_header flx-justify-between">
       <div class="header_button_lf">
@@ -73,7 +73,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Refresh, Operation, ArrowUp } from "@element-plus/icons-vue";
 import { Form } from "@/types/form";
 import { useTable } from "@/hooks/useTable";
@@ -87,7 +87,7 @@ const openColSetting = () => {};
 //表格数据
 interface Table {
   border: boolean;
-  columns: Partial<Form.SearchFormItem>[]; //表格配置项
+  columns: Partial<Form.Column>[]; //表格配置项
   selectedId?: string; //初始化多选列表id，（默认为id，可修改）
   // * 使用hooks，接受参数（requestApi、initParams）
   requestApi: (params: any) => Promise<any>; //请求表格数据的api ==> 必传
@@ -104,8 +104,19 @@ const prop = withDefaults(defineProps<Table>(), {
 const { searchParam, searchInitParams, tableData, getTableList, reset, pageable, handleSizeChange, handleCurrentChange, search } =
   useTable(prop.requestApi, prop.initParams);
 
+// * 监听 initParams 改变 ，改变则重新加载表格数据
+watch(
+  () => prop.initParams,
+  () => {
+    getTableList();
+  },
+  {
+    deep: true,
+  },
+);
+
 // * 设置单元格列
-const tableColumns = ref<Partial<Form.SearchFormItem>[]>();
+const tableColumns = ref<Partial<Form.Column>[]>();
 tableColumns.value = prop.columns.map(item => {
   return {
     ...item,
@@ -113,10 +124,18 @@ tableColumns.value = prop.columns.map(item => {
   };
 });
 
+// * 如果enum为接口，获取数据 (当enum传接口类型自动转化)
+tableColumns.value.forEach(async item => {
+  if (item.enum && typeof item.enum === "function") {
+    const { data } = await item.enum();
+    item.enum = data.data;
+  }
+});
+
 // * 过滤需要搜索的配置项 (需要搜索获取表数据参数项)
 const searchColumns = tableColumns.value.filter(item => item.search);
 // * 设置搜索默认值
-searchColumns.forEach((column: Partial<Form.SearchFormItem>) => {
+searchColumns.forEach((column: Partial<Form.Column>) => {
   if (column.searchInitParams !== undefined && column.searchInitParams !== null) {
     searchInitParams[column.prop!] = column.searchInitParams;
   }

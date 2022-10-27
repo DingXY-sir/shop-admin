@@ -23,12 +23,22 @@
 	justify-content: space-around;
 	align-items: center;
 }
+// * 使用表格布局最外层class
 .view-container {
   display: flex;
   flex-direction: column;
   flex: 1;
   height: 100%;
   width: 100%;
+}
+// * mian-box （左右布局，将左侧固定宽度，树形表格中会涉及到）
+.main-row-box{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	.table-box{
+		width: calc(100% - 230px);
+	}
 }
 /* nprogress样式 */
 #nprogress .bar {

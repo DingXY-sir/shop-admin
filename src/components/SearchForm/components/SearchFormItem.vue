@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-23 11:28:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-30 15:02:07
+ * @LastEditTime: 2022-10-27 11:11:42
 -->
 <!--
  * TS  ! 非空断言操作符
@@ -52,7 +52,7 @@
 import { Form } from "@/types/form";
 interface SearchFormItem {
   searchParam: any;
-  item: Partial<Form.SearchFormItem>;
+  item: Partial<Form.Column>;
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const prop = defineProps<SearchFormItem>();

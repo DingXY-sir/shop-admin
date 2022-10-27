@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:36:34
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 16:20:35
+ * @LastEditTime: 2022-10-27 13:45:47
 -->
 <template>
   <div class="container">
@@ -17,9 +17,9 @@
           <com-tabs />
         </el-header>
         <el-main>
-          <section class="main-box">
-            <router-view />
-          </section>
+          <!-- <section class="main-box"> -->
+          <router-view />
+          <!-- </section> -->
         </el-main>
         <el-footer><com-footer /></el-footer>
       </el-container>

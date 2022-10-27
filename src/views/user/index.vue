@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:30:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-26 16:53:51
+ * @LastEditTime: 2022-10-27 11:18:36
 -->
 <template>
   <div class="view-container">
@@ -57,6 +57,8 @@ const tableColumns = ref([
     searchType: "text",
     isShow: true,
   },
+  //😊 enum传入的值为接口，ProTable会自动转化
+  //😊 enum也可以使用字典
   {
     prop: "gender",
     label: "性别",
@@ -79,7 +81,7 @@ const tableColumns = ref([
     search: true,
     searchType: "select",
     isShow: true,
-    enum: [],
+    enum: getUserStatus,
   },
   {
     prop: "address",
@@ -97,15 +99,6 @@ const tableColumns = ref([
 ]);
 // * 表格边框配置
 const border = ref(true);
-// * 获取用户状态  （使用接口请求展示搜索数据 或 获取全局字典数据）
-const getStatus = async () => {
-  const res = await getUserStatus();
-  tableColumns.value.forEach(item => {
-    if (item.prop === "status") {
-      return (item.enum = [...res.data!.data]);
-    }
-  });
-};
 // * 新增
 const handleCreate = (val: string) => {
   console.log(val);
@@ -130,8 +123,6 @@ const handleEdit = (title: string, row: any) => {
 const handleDeleted = (id: number | string) => {
   console.log(id);
 };
-onMounted(() => {
-  getStatus();
-});
+onMounted(() => {});
 </script>
 <style lang="scss" scoped></style>

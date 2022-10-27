@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-26 16:58:14
+ * @LastEditTime: 2022-10-26 17:55:41
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -18,6 +18,17 @@ export default defineConfig({
   base: "./",
   build: {
     target: "esnext",
+    outDir: "dist",
+    minify: "esbuild",
+    // esbuild 打包更快，但是不能去除 console.log，terser打包慢，但能去除 console.log
+    // minify: "terser",
+    // terserOptions: {
+    // 	compress: {
+    // 		drop_console: viteEnv.VITE_DROP_CONSOLE,
+    // 		drop_debugger: true
+    // 	}
+    // },
+    chunkSizeWarningLimit: 1500,
   },
   plugins: [
     // topLevelAwait({
