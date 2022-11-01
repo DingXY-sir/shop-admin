@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 14:28:46
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 21:17:58
+ * @LastEditTime: 2022-11-01 10:38:34
 -->
 <template>
   <div class="login-form-container">
@@ -22,19 +22,6 @@
           </template>
         </el-input>
       </el-form-item>
-      <!-- <el-form-item prop="code">
-        <div class="flx-justify-between">
-          <div class="code_ipt">
-            <el-input
-              v-model="loginForm.code"
-              placeholder="验证码："
-            ></el-input>
-          </div>
-          <div class="code_img">
-            <el-image :src="loginForm.imgCode" @click="updateCode" />
-          </div>
-        </div>
-      </el-form-item> -->
     </el-form>
     <div>
       <el-button type="primary" @click="loginHandle(formRef)" :loading="loading">登陆</el-button>
@@ -49,9 +36,11 @@ import type { ElForm } from "element-plus";
 import { ElNotification } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
 import { getCurrentTimes } from "@/utils/util";
-import { getLoginMock } from "@/api/modules/login";
 import { useRouter, useRoute } from "vue-router";
+import { getLoginMock } from "@/api/modules/login";
 import { useUserStore } from "@/store/modules/user";
+import { dynamicRouter } from "@/router/modules/dynamicRouter";
+
 //FormInstance 获取表单实例类型
 type FormInstance = InstanceType<typeof ElForm>;
 const formRef = ref<FormInstance>();
@@ -60,25 +49,11 @@ const loginRules = reactive({
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
   code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
 });
-// const loginForm = reactive<Login.ReqLoginForm>({
-//   phone: "",
-//   password: "",
-//   code: "",
-//   imgCode: "",
-// });
+
 const loginForm = reactive({
   username: "",
   password: "",
 });
-
-//验证码
-// const getCodeHandle = async () => {
-//   const { data } = await getCode();
-//   loginForm.imgCode = "data:image/png;base64," + data;
-// };
-// const updateCode = () => {
-//   getCodeHandle();
-// };
 
 //登陆表单
 const loading = ref<boolean>(false);
@@ -104,10 +79,13 @@ const loginHandle = (formEl: FormInstance | undefined) => {
         userName,
       });
 
+      // * 获取动态路由
+      await dynamicRouter();
+
       //通过路由拦截记录未登录时跳转的地址
-      let redirect = route.query.redirect || "/home";
+      let redirect = route.query.redirect || "/home/index";
       if (typeof redirect !== "string") {
-        redirect = "/home";
+        redirect = "/home/index";
       }
       router.replace(redirect);
       ElNotification({

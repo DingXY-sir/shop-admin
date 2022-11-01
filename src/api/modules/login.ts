@@ -3,9 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-15 11:26:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-27 13:51:14
+ * @LastEditTime: 2022-10-31 16:42:19
  */
 import { Login } from "@/api/interface/index";
+import { Menu } from "@/api/interface/login";
 import http from "@/utils/request";
 import qs from "qs";
 
@@ -41,4 +42,9 @@ interface LoginData {
 //登陆接口
 export const getLoginMock = (params: { username: string; password: string }) => {
   return http.post<LoginData>("/login", qs.stringify(params));
+};
+
+// * 获取动态菜单路由表
+export const getAuthMenuList = () => {
+  return http.post<Menu.MenuOption[]>("/menu/list");
 };

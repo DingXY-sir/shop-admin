@@ -55,7 +55,6 @@ const tableColumns = ref([
     label: "用户姓名",
     search: true,
     searchType: "text",
-    isShow: true,
   },
   //😊 enum传入的值为接口，ProTable会自动转化
   //😊 enum也可以使用字典
@@ -64,7 +63,6 @@ const tableColumns = ref([
     label: "性别",
     search: true,
     searchType: "select",
-    isShow: true,
     enum: genderType,
   },
   {
@@ -72,7 +70,6 @@ const tableColumns = ref([
     label: "身份证号",
     search: true,
     searchType: "text",
-    isShow: true,
   },
   {
     prop: "status",
@@ -80,7 +77,6 @@ const tableColumns = ref([
     tag: true,
     search: true,
     searchType: "select",
-    isShow: true,
     enum: getUserStatus,
   },
   {
@@ -88,7 +84,6 @@ const tableColumns = ref([
     label: "居住地址",
     search: true,
     searchType: "text",
-    isShow: true,
   },
   {
     prop: "operation",

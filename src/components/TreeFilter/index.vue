@@ -1,9 +1,9 @@
 <!--
- * @Descripttion: 
+ * @Descripttion: 树形过滤组件
  * @Author: DXY
  * @Date: 2022-10-27 14:20:47
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-27 17:44:45
+ * @LastEditTime: 2022-10-27 17:58:23
 -->
 <template>
   <div class="card tree_filter">
@@ -40,7 +40,6 @@ const prop = withDefaults(defineProps<TreeFilterProps>(), {
   label: "label",
   defaultValue: "",
 });
-
 const defaultProps = {
   children: "children",
   label: prop.label,
