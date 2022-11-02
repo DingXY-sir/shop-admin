@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 15:14:40
+ * @LastEditTime: 2022-11-02 16:56:41
 -->
 <template>
   <div class="tab-box">
@@ -18,11 +18,13 @@
           </template>
         </el-tab-pane>
       </el-tabs>
+      <more-button></more-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import MoreButton from "./components/MoreButton.vue";
 import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useTagsStore } from "@/store/modules/tags";
