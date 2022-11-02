@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 15:17:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 15:23:50
+ * @LastEditTime: 2022-11-02 21:11:09
  */
 import { defineStore } from "pinia";
 import { TabsState, TabsMenuProps } from "../interface/index";
@@ -38,6 +38,13 @@ export const useTagsStore = defineStore("tags", {
       }
       // 返回新的tagsList
       this.tagsList = tagsList.filter(item => item.path !== tabPath);
+    },
+
+    // * 关闭所有tags标签 或者 关闭其他tags标签
+    async colseAllTags(tagsValue?: string) {
+      this.tagsList = this.tagsList.filter(item => {
+        return item.path === tagsValue || !item.close;
+      });
     },
   },
   persist: {

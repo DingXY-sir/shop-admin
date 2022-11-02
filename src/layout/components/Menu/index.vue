@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 11:32:56
+ * @LastEditTime: 2022-11-02 21:37:47
 -->
 <template>
   <div class="container">
@@ -35,7 +35,6 @@ const activeMenu = computed((): string => route.path);
 
 // *获取Menu接口数据
 const authStore = AuthStore();
-console.log(authStore.getAuthMenuList);
 
 // menuStore.setMenuList(authStore.getAuthMenuList);
 </script>

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-10 13:46:42
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 14:15:35
+ * @LastEditTime: 2022-11-02 17:58:35
 -->
 <script setup lang="ts">
 import { ref, computed } from "vue";
@@ -15,6 +15,8 @@ const language = ref("zh-cn");
 const locale = computed(() => (language.value === "zh-cn" ? zhCn : en));
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+
+// * 使用主题
 useTheme();
 </script>
 

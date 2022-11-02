@@ -1,9 +1,9 @@
 <!--
- * @Descripttion: 
+ * @Descripttion: tags导航标签
  * @Author: DXY
  * @Date: 2022-11-02 15:57:28
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 16:55:38
+ * @LastEditTime: 2022-11-02 21:37:01
 -->
 <template>
   <el-dropdown>
@@ -17,19 +17,19 @@
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item>
+        <el-dropdown-item @click="refresh">
           <el-icon><Refresh /></el-icon>{{ $t("tabs.refresh") }}
         </el-dropdown-item>
         <el-dropdown-item>
           <el-icon><FullScreen /></el-icon>{{ $t("tabs.maximize") }}
         </el-dropdown-item>
-        <el-dropdown-item divided>
+        <el-dropdown-item divided @click="closeCurrentTag">
           <el-icon><Remove /></el-icon>{{ $t("tabs.closeCurrent") }}
         </el-dropdown-item>
-        <el-dropdown-item>
+        <el-dropdown-item @click="colseOtherTag">
           <el-icon><CircleClose /></el-icon>{{ $t("tabs.closeOther") }}
         </el-dropdown-item>
-        <el-dropdown-item>
+        <el-dropdown-item @click="colseAllTag">
           <el-icon><FolderDelete /></el-icon>{{ $t("tabs.closeAll") }}
         </el-dropdown-item>
       </el-dropdown-menu>
@@ -37,5 +37,38 @@
   </el-dropdown>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { inject } from "vue";
+import { useTagsStore } from "@/store/modules/tags";
+import { useRoute, useRouter } from "vue-router";
+import { HOME_RUL } from "@/config/config";
+
+// * 刷新
+const reload: Function = inject("refresh") as Function;
+const refresh = () => {
+  reload();
+};
+
+// * 关闭当前
+const tagsStore = useTagsStore();
+const route = useRoute();
+const router = useRouter();
+
+const closeCurrentTag = () => {
+  // 防止关闭首页
+  if (route.meta.isAffix) return;
+  tagsStore.colseTagsList(route.path);
+};
+
+// * 关闭其他
+const colseOtherTag = () => {
+  tagsStore.colseAllTags(route.path);
+};
+
+// * 关闭所有
+const colseAllTag = () => {
+  tagsStore.colseAllTags();
+  router.push(HOME_RUL);
+};
+</script>
 <style lang="scss" scoped></style>
