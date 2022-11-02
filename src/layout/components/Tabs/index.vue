@@ -3,79 +3,65 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 10:05:41
+ * @LastEditTime: 2022-11-02 15:14:40
 -->
 <template>
-  <div class="tabs-container flx-items-center">
-    <el-tag
-      v-for="(tag, index) in tagsList"
-      class="tag_item"
-      :key="tag.path"
-      :closable="tag.path !== '/home/index'"
-      :effect="currentTag === tag.path ? 'dark' : 'plain'"
-      :disable-transitions="false"
-      @click="currentHandle(tag)"
-      @close="handleClose(tag, index)"
-    >
-      <el-icon>
-        <component :is="tag.meta.icon"></component>
-      </el-icon>
-      {{ tag.meta.title }}
-    </el-tag>
+  <div class="tab-box">
+    <div class="tabs-menu">
+      <el-tabs v-model="tabsMenuValue" type="card" @tab-click="tabClick" @tab-remove="tabRemove">
+        <el-tab-pane v-for="item in tabsMenuList" :key="item.path" :label="item.title" :name="item.path" :closable="item.close">
+          <template #label>
+            <el-icon class="tabs-icon" v-if="item.icon">
+              <component :is="item.icon"></component>
+            </el-icon>
+            {{ item.title }}
+          </template>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useTagsStore } from "@/store/modules/tags";
-import { TagType } from "@/types/tags";
+import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-const tagsStore = useTagsStore();
+import { useTagsStore } from "@/store/modules/tags";
+import type { TabsPaneContext } from "element-plus";
+
 const route = useRoute();
 const router = useRouter();
-const tagsList = tagsStore.tagsList;
-const currentTag = computed(() => {
-  return route.path;
-});
-const currentHandle = (item: TagType) => {
-  router.push(item.path);
+const tagsStore = useTagsStore();
+
+const tabsMenuValue = ref(route.path);
+const tabsMenuList = computed(() => tagsStore.tagsList);
+
+// * 监听路由变化 防止浏览器前进后退不变化
+watch(
+  () => route.path,
+  () => {
+    tabsMenuValue.value = route.path;
+    // 将当前路由添加到tabsList
+    const tabParam = {
+      icon: route.meta.icon as string,
+      title: route.meta.title,
+      path: route.path as string,
+      close: !route.meta.isAffix,
+    };
+    tagsStore.addTagsList(tabParam);
+  },
+  {
+    immediate: true,
+  },
+);
+
+const tabClick = (tabItem: TabsPaneContext) => {
+  let path = tabItem.props.name as string;
+  router.push(path);
 };
-const handleClose = (item: TagType, index: number) => {
-  //1、获取tags长度
-  let length = tagsList.length - 1;
-  tagsStore.colseTagsList(item);
-  //2、关闭的tag是否和当前路由一致
-  if (item.path !== route.path) {
-    return false;
-  }
-  //3、判断当前点击的位置（点击最后一个，高亮向前移动;点击中间某一个，高亮向后移动）
-  if (length === index) {
-    router.push(tagsList[index - 1].path);
-  } else {
-    router.push(tagsList[index].path);
-  }
+const tabRemove = (activePath: string) => {
+  tagsStore.colseTagsList(activePath, activePath == route.path);
 };
 </script>
 <style lang="scss" scoped>
-.tabs-container {
-  box-sizing: border-box;
-  height: 34px;
-  margin: 0;
-  padding: 0 10px;
-  .tag_item {
-    margin-right: 10px;
-    cursor: pointer;
-    :deep(.el-tag__content) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  .el-tag--plain {
-    --el-tag-border-color: var(--el-color-primary);
-  }
-  .el-tag--dark {
-    --el-tag-hover-color: none;
-  }
-}
+@import "./index.scss";
 </style>

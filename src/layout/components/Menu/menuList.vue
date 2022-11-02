@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:00:31
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 11:07:52
+ * @LastEditTime: 2022-11-02 13:52:53
 -->
 <template>
   <template v-for="menuItem in menuList" :key="menuItem.path">
@@ -26,14 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { useTagsStore } from "@/store/modules/tags";
+import { useRouter } from "vue-router";
 defineProps<{ menuList: Menu.MenuOption[] }>();
 
-const tagsStore = useTagsStore();
+const router = useRouter();
 const tagHandle = (item: Menu.MenuOption) => {
   const { path, meta } = item;
-  let tagItem = { path, meta };
-  tagsStore.addTagsList(tagItem);
+  if (meta.isLink) window.open(meta.isLink, "_bank");
+  router.push(path);
 };
 </script>
 <style lang="scss" scoped></style>
