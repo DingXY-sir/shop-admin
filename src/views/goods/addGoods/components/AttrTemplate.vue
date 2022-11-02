@@ -8,12 +8,7 @@
 <template>
   <el-space>
     <el-select v-model="attrVal" class="m-2" placeholder="Select" size="large">
-      <el-option
-        v-for="item in defaultTemplateData"
-        :key="item.id"
-        :label="item.rule_name"
-        :value="item.id"
-      />
+      <el-option v-for="item in defaultTemplateData" :key="item.id" :label="item.rule_name" :value="item.id" />
     </el-select>
     <el-button type="primary" @click="handleConfirm">确定</el-button>
     <el-button>添加规格模版</el-button>
@@ -22,7 +17,7 @@
 
 <script setup lang="ts">
 import { ElMessage } from "element-plus";
-import { ref, reactive, computed, watch, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import type { Goods } from "@/types/goods";
 import { getAttrTemplate } from "@/api/modules/shop";
 
@@ -34,7 +29,7 @@ interface emitType {
         inputVisible?: Boolean;
         inputValue?: string | number;
       }
-    >
+    >,
   ): void;
 }
 const emit = defineEmits<emitType>();
@@ -51,9 +46,7 @@ onMounted(() => {
 
 const handleConfirm = () => {
   if (attrVal.value) {
-    const item = defaultTemplateData.value.find(
-      (item) => item.id === attrVal.value
-    );
+    const item = defaultTemplateData.value.find(item => item.id === attrVal.value);
     if (item) {
       emit("confirm", item.rule_value);
     }

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:36:34
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 15:44:51
+ * @LastEditTime: 2022-10-27 13:45:47
 -->
 <template>
   <div class="container">
@@ -17,9 +17,9 @@
           <com-tabs />
         </el-header>
         <el-main>
-          <section class="main-box">
-            <router-view />
-          </section>
+          <!-- <section class="main-box"> -->
+          <router-view />
+          <!-- </section> -->
         </el-main>
         <el-footer><com-footer /></el-footer>
       </el-container>
@@ -34,7 +34,6 @@ import ComHeader from "./components/Header/index.vue";
 import ComFooter from "./components/Footer/index.vue";
 import ComTabs from "./components/Tabs/index.vue";
 import ThemeDrawer from "./components/ThemeDrawer/index.vue";
-import { ref, reactive, computed, watch } from "vue";
 </script>
 <style lang="scss" scoped>
 @import "./index.scss";

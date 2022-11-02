@@ -7,13 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    403: typeof import('./src/components/ErrorMessage/403.vue')['default']
+    404: typeof import('./src/components/ErrorMessage/404.vue')['default']
+    500: typeof import('./src/components/ErrorMessage/500.vue')['default']
     BaseDialog: typeof import('./src/components/BaseDialog/index.vue')['default']
+    ColSetting: typeof import('./src/components/ProTable/components/ColSetting.vue')['default']
     Draggable: typeof import('./src/components/Draggable/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCol: typeof import('element-plus/es')['ElCol']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -35,12 +38,11 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    ElRow: typeof import('element-plus/es')['ElRow']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
@@ -49,6 +51,7 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     Pagination: typeof import('./src/components/Pagination/index.vue')['default']
     ProTable: typeof import('./src/components/ProTable/index.vue')['default']
@@ -56,5 +59,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchForm: typeof import('./src/components/SearchForm/index.vue')['default']
     SearchFormItem: typeof import('./src/components/SearchForm/components/SearchFormItem.vue')['default']
+    SwitchDark: typeof import('./src/components/SwitchDark/index.vue')['default']
+    TreeFilter: typeof import('./src/components/TreeFilter/index.vue')['default']
   }
 }

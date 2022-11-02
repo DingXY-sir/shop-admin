@@ -3,12 +3,12 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-09 14:57:59
+ * @LastEditTime: 2022-10-20 16:15:35
 -->
 
 <template>
   <div
-    class="viev-container"
+    class="view-container"
     v-waterMarker="{
       text: 'admin',
       textColor: 'rgba(180, 180, 180, 0.6)',
@@ -17,30 +17,22 @@
     <pro-table
       ref="tableRef"
       :initParams="initParams"
+      :requestApi="getRoleList"
       :getSearchList="getSearchList"
       :tableColumns="tableColumns"
       :border="border"
     >
       <template #tableHeader="scope">
-        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
-          >新增用户</el-button
-        >
-        <el-button type="primary" :icon="Upload" plain @click="batchAdd"
-          >批量添加用户</el-button
-        >
-        <el-button
-          type="primary"
-          :icon="Download"
-          plain
-          v-debounce="handleExport"
-          >导出用户数据</el-button
-        >
+        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
+        <el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
+        <el-button type="primary" :icon="Download" plain v-debounce="handleExport">导出用户数据</el-button>
         <el-button
           type="danger"
           :icon="Delete"
           plain
-          :disabled="scope.isSelected"
+          :disabled="!scope.isSelected"
           v-debounce="batchDelete"
+          @click="batchDelected(scope.selectedListIds)"
         >
           批量删除用户
         </el-button>
@@ -55,54 +47,24 @@
         ></el-switch>
       </template>
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          :icon="View"
-          @click="openDrawer('查看', scope.row)"
-          >查看</el-button
-        >
-        <el-button
-          type="primary"
-          link
-          :icon="EditPen"
-          @click="openDrawer('编辑', scope.row)"
-          >编辑</el-button
-        >
-        <el-button
-          type="primary"
-          link
-          :icon="Refresh"
-          @click="resetPass(scope.row)"
-          >授权</el-button
-        >
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
+        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
+        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">授权</el-button>
       </template>
     </pro-table>
-    <card
-      v-model="isDialogShow"
-      v-model:adminId="adminId"
-      :titleName="titleName"
-      @success="handleSuccess"
-    />
+    <card v-model="isDialogShow" v-model:adminId="adminId" :titleName="titleName" @success="handleSuccess" />
   </div>
 </template>
 
 <script setup lang="ts">
 import Card from "./components/card.vue";
-import { ref, reactive, computed, watch, onMounted, PropType } from "vue";
-import {
-  View,
-  EditPen,
-  Refresh,
-  Delete,
-  CirclePlus,
-  Download,
-  Upload,
-} from "@element-plus/icons-vue";
+import { ref, reactive, onMounted } from "vue";
+import { View, EditPen, Refresh, Delete, CirclePlus, Download, Upload } from "@element-plus/icons-vue";
 import type { Form } from "@/types/form";
 import type { RoleTableData } from "./index";
 import { ElMessage } from "element-plus";
-
+import { getRoleList, handleDelete } from "@/api/modules/role";
+import { useMessageBox } from "@/hooks/useMessageBox";
 //表单查询条件
 const getSearchList = ref([
   { searchType: "text", label: "角色名称", prop: "name", isShow: true },
@@ -140,14 +102,18 @@ const initParams = reactive({
 const border = true;
 //获取ProTable组件实例
 const tableRef = ref();
+
 onMounted(() => {});
+// *启用/禁用
 const handleSwitchOpen = (id: number, status: string) => {
   console.log(id, status);
 };
-//card操作
+
+//*新增/编辑card操作
 const isDialogShow = ref(false);
 const titleName = ref("授权");
 const adminId = ref<number | null>(null);
+
 const openDrawer = (name: string, row?: any) => {
   if (name === "新增") {
     isDialogShow.value = true;
@@ -161,7 +127,17 @@ const openDrawer = (name: string, row?: any) => {
     adminId.value = row.id;
   }
 };
+//*删除
+const batchDelected = async (ids: Array<number | string>) => {
+  // 二次确认弹窗
+  await useMessageBox(handleDelete, { id: ids }, "删除");
+  // 刷新列表数据
+  tableRef.value.getTableList();
+};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resetPass = (row: any) => {};
+
+const batchAdd = () => {};
 
 //弹框成功操作
 const handleSuccess = () => {

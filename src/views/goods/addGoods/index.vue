@@ -13,26 +13,15 @@
           <el-radio label="1">单规格</el-radio>
           <el-radio label="2">多规格</el-radio>
           <!-- 单规格模版 -->
-          <attr-table
-            v-model="singleAttrTable"
-            v-if="goodsFormData.specifications === '1'"
-          />
+          <attr-table v-model="singleAttrTable" v-if="goodsFormData.specifications === '1'" />
         </el-radio-group>
       </el-form-item>
-      <el-form-item
-        label="添加规格模版"
-        v-show="goodsFormData.specifications === '2'"
-        style="width: 50%"
-      >
+      <el-form-item label="添加规格模版" v-show="goodsFormData.specifications === '2'" style="width: 50%">
         <el-space direction="vertical" alignment="start">
           <!-- 添加规格模版 -->
           <attr-template @confirm="attrPitch = $event"></attr-template>
           <!-- 规格编辑 -->
-          <attr-edit
-            v-if="attrPitch.length > 0"
-            v-model="attrPitch"
-            @confim="handleMultiAttr"
-          />
+          <attr-edit v-if="attrPitch.length > 0" v-model="attrPitch" @confim="handleMultiAttr" />
           <!-- 多规格商品属性 -->
           <template v-if="multiAttrData.values.length">
             <p>商品属性</p>
@@ -84,7 +73,7 @@
 import AttrTable from "./components/AttrTable.vue";
 import AttrTemplate from "./components/AttrTemplate.vue";
 import AttrEdit from "./components/AttrEdit.vue";
-import { ref, reactive, computed, watch, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import type { Goods } from "@/types/goods";
 
 // const activity = ref([

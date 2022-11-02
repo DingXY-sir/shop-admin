@@ -7,7 +7,7 @@
  */
 import { App } from "vue";
 import waterMarker from "./modules/waterMaker";
-import debounce from "./modules/debounce"
+import debounce from "./modules/debounce";
 
 const direcitvesList = {
   debounce,
@@ -15,11 +15,11 @@ const direcitvesList = {
 };
 
 const directives = {
-  install: (app:App<Element>) => {
-    Object.keys(direcitvesList).forEach((key) => {
-      app.directive(key,direcitvesList[key])
-    })
-  }
-}
+  install: (app: App<Element>) => {
+    Object.keys(direcitvesList).forEach(key => {
+      app.directive(key, direcitvesList[key]);
+    });
+  },
+};
 
-export default directives
+export default directives;

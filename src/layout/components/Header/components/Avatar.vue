@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-10 10:28:47
+ * @LastEditTime: 2022-10-17 16:21:30
 -->
 <template>
-  <div class="container flx-items-center">
+  <div class="avatar-container flx-items-center">
     <span class="user_name">{{ userName }}</span>
     <el-dropdown>
       <div class="avatar">
@@ -16,9 +16,7 @@
         <el-dropdown-menu>
           <el-dropdown-item>个人资料</el-dropdown-item>
           <el-dropdown-item>修改密码</el-dropdown-item>
-          <el-dropdown-item divided @click="logout">
-            退出登录
-          </el-dropdown-item>
+          <el-dropdown-item divided @click="logout"> 退出登录 </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -26,13 +24,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessageBox } from "element-plus";
-const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url)
-  .href;
+const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url).href;
 const userStore = useUserStore();
-const userName = computed((): string => userStore.user.username);
+const userName = computed((): string => userStore.user.userName);
 const logout = () => {
   // 退出登录
   ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {

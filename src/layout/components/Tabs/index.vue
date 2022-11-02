@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-08-22 17:29:59
+ * @LastEditTime: 2022-11-02 10:05:41
 -->
 <template>
   <div class="tabs-container flx-items-center">
@@ -17,15 +17,18 @@
       @click="currentHandle(tag)"
       @close="handleClose(tag, index)"
     >
-      {{ tag.title }}
+      <el-icon>
+        <component :is="tag.meta.icon"></component>
+      </el-icon>
+      {{ tag.meta.title }}
     </el-tag>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
 import { useTagsStore } from "@/store/modules/tags";
-import { TagItem } from "@/types/tags";
+import { TagType } from "@/types/tags";
 import { useRoute, useRouter } from "vue-router";
 const tagsStore = useTagsStore();
 const route = useRoute();
@@ -34,10 +37,10 @@ const tagsList = tagsStore.tagsList;
 const currentTag = computed(() => {
   return route.path;
 });
-const currentHandle = (item: TagItem) => {
+const currentHandle = (item: TagType) => {
   router.push(item.path);
 };
-const handleClose = (item: TagItem, index: number) => {
+const handleClose = (item: TagType, index: number) => {
   //1、获取tags长度
   let length = tagsList.length - 1;
   tagsStore.colseTagsList(item);
@@ -62,6 +65,17 @@ const handleClose = (item: TagItem, index: number) => {
   .tag_item {
     margin-right: 10px;
     cursor: pointer;
+    :deep(.el-tag__content) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .el-tag--plain {
+    --el-tag-border-color: var(--el-color-primary);
+  }
+  .el-tag--dark {
+    --el-tag-hover-color: none;
   }
 }
 </style>

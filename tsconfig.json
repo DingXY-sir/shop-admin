@@ -13,10 +13,11 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "baseUrl": ".",
+    //配置路径别名
     "paths": {
-      "@/*":["src/*"]
+      "@/*": ["src/*"]
     },
-    "suppressImplicitAnyIndexErrors": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

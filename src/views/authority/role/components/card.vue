@@ -6,10 +6,7 @@
  * @LastEditTime: 2022-10-08 10:51:30
 -->
 <template>
-  <base-dialog
-    :title="adminId ? `编辑${titleName}` : `新增${titleName}`"
-    @confirm="handleConfirm"
-  >
+  <base-dialog :title="adminId ? `编辑${titleName}` : `新增${titleName}`" @confirm="handleConfirm">
     <div></div>
   </base-dialog>
 </template>

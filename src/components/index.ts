@@ -5,13 +5,13 @@
  * @LastEditors: DXY
  * @LastEditTime: 2022-10-08 17:00:07
  */
-import { App } from "vue"
+import { App } from "vue";
 
 export default {
-  install: (app:App<Element>) => {
-    const modules = import.meta.glob('./**/index.vue');
+  install: (app: App<Element>) => {
+    const modules = import.meta.glob("./**/index.vue");
     for (const path in modules) {
-      app.component(path.slice(2,path.lastIndexOf('/')),modules[path])
+      app.component(path.slice(2, path.lastIndexOf("/")), modules[path]);
     }
-  }
-}
+  },
+};

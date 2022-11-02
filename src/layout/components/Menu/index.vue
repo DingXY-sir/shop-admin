@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 17:40:36
  * @LastEditors: DXY
- * @LastEditTime: 2022-09-12 20:35:41
+ * @LastEditTime: 2022-11-01 11:32:56
 -->
 <template>
   <div class="container">
@@ -16,54 +16,28 @@
       background-color="#191a20"
       router
     >
-      <sub-menu :menuList="menuData" />
+      <sub-menu :menuList="authStore.getAuthMenuList" />
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { computed } from "vue";
+import { AuthStore } from "@/store/modules/auth";
 import { useMenuStore } from "@/store/modules/menu";
 import subMenu from "./menuList.vue";
 import { useRoute } from "vue-router";
+
 const route = useRoute();
 const menuStore = useMenuStore();
 const isCollapse = computed((): boolean => menuStore.isCollapse);
 const activeMenu = computed((): string => route.path);
 
-//模拟导航接口数据
-const menuData = ref([
-  { icon: "home-filled", path: "/home/index", title: "首页" },
-  {
-    icon: "goods-filled",
-    path: "/goods",
-    title: "商品管理",
-    children: [
-      { icon: "home-filled", path: "/goods/list", title: "商品列表" },
-      { icon: "home-filled", path: "/goods/addGoods", title: "添加商品" },
-    ],
-  },
-  {
-    icon: "user-filled",
-    path: "/user",
-    title: "用户管理",
-    children: [{ icon: "goods-filled", path: "/user/list", title: "用户列表" }],
-  },
-  {
-    icon: "avatar",
-    path: "/authority",
-    title: "权限管理",
-    children: [
-      {
-        icon: "circle-plus-filled",
-        path: "/authority/auth",
-        title: "权限列表",
-      },
-      { icon: "help-filled", path: "/authority/role", title: "角色管理" },
-    ],
-  },
-]);
-menuStore.setMenuList(menuData.value);
+// *获取Menu接口数据
+const authStore = AuthStore();
+console.log(authStore.getAuthMenuList);
+
+// menuStore.setMenuList(authStore.getAuthMenuList);
 </script>
 <style lang="scss" scoped>
 .container {

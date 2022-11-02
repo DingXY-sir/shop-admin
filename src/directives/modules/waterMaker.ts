@@ -15,9 +15,9 @@
  * <div v-waterMarker="{text:'版权所有',textColor:'rgba(180,180,180,0.4)'}"></div>
  */
 
-import { Directive, DirectiveBinding } from "vue"
+import { Directive, DirectiveBinding } from "vue";
 
-const addWaterMaker:Directive = (str: string, parentNode: any, font: any, textColor: any) => {
+const addWaterMaker: Directive = (str: string, parentNode: any, font: any, textColor: any) => {
   let can = document.createElement("canvas");
   parentNode.appendChild(can);
   can.width = 210;
@@ -30,13 +30,12 @@ const addWaterMaker:Directive = (str: string, parentNode: any, font: any, textCo
   cans.textAlign = "left";
   cans.textBaseline = "middle";
   cans.fillText(str, can.width / 10, can.height / 2);
-  parentNode.style.backgroundImage = `url(${can.toDataURL("image/png")})`
-  
-}
+  parentNode.style.backgroundImage = `url(${can.toDataURL("image/png")})`;
+};
 const waterMarker = {
-  mounted(el:DirectiveBinding,binding:DirectiveBinding) {
-    addWaterMaker(binding.value.text,el,binding.value.font,binding.value.textColor)
+  mounted(el: DirectiveBinding, binding: DirectiveBinding) {
+    addWaterMaker(binding.value.text, el, binding.value.font, binding.value.textColor);
   },
-}
+};
 
 export default waterMarker;

@@ -1,0 +1,82 @@
+// .el-tag--dark{
+//   --el-tag-hover-color:var(--el-color-primary);
+// }
+
+// * 全局card样式
+.card {
+	box-sizing: border-box;
+	padding: 20px;
+	overflow-x: hidden;
+	background-color: var(--el-fill-color-blank);
+	border: 1px solid var(--el-border-color-light);
+	border-radius: 4px;
+	box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+}
+
+// el-table 表格样式
+.table{
+	.el-table {
+		flex: 1;
+		.el-table__header th {
+			height: 45px;
+			font-size: 15px;
+			font-weight: bold;
+			color: #252525;
+			background: #fafafa;
+		}
+		.el-table__row {
+			height: 45px;
+			font-size: 14px;
+		}
+	
+		// 设置 el-table 中 header 文字不换行
+		.el-table__header .el-table__cell > .cell {
+			white-space: nowrap;
+		}
+	
+		// 解决表格数据为空时样式不居中问题(仅在element-plus中)
+		.el-table__empty-block {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			.table-empty {
+				line-height: 30px;
+			}
+		}
+	
+		// table 中 image 图片样式
+		.table-image {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+	}
+}
+
+
+// * el-drawer 样式
+.el-drawer {
+	// drawer header 样式
+	.el-drawer__header {
+		padding: 15px 20px 14px;
+		margin-bottom: 0;
+		border-bottom: 1px solid var(--el-border-color-lighter);
+		span {
+			font-size: 17px;
+			color: var(--el-text-color-primary) !important;
+		}
+	}
+
+	// drawer footer 样式
+	.el-drawer__footer {
+		border-top: 1px solid var(--el-border-color-lighter);
+	}
+
+	// drawer select 样式
+	.el-select {
+		width: 100%;
+	}
+}
+
+// * table

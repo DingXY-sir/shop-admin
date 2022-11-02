@@ -15,65 +15,37 @@
     </el-table-column>
     <el-table-column label="售价" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.price"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.price" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="成本价" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.cost_price"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.cost_price" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="原价" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.or_price"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.or_price" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="库存" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.repertory"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.repertory" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="商品编号" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.product_id"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.product_id" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="重量(KG)" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.weight"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.weight" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column label="体积(m³)" min-width="155" align="center">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.volume"
-          size="small"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.volume" size="small" controls-position="right" />
       </template>
     </el-table-column>
     <slot name="append"></slot>
@@ -81,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
 const prop = defineProps({
   modelValue: {
     type: Array,

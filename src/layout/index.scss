@@ -6,7 +6,7 @@
       .container{
         height: 100vh;
         background-color: $menuBgColor;
-        :deep(.el-menu){border-right: none !important;}
+        :deep(.el-menu){border-right: none !important; background-color:  $menuBgColor;}
         :deep(.el-menu,.el-menu--popup) {
           .el-menu-item{
             &.is-active{
@@ -20,7 +20,8 @@
                 left: 0;
                 width: 4px;
                 content: "";
-                background-color: $menuActiveBorderColor;
+                // background-color: $menuActiveBorderColor;
+                background-color: $primary-color;
               }
             }
           }
@@ -62,7 +63,8 @@
     .el-footer{
       height: 30px;
       line-height: 30px;
-      .container{
+      padding: 0;
+      .footer-container{
         text-align: center;
         height: 30px;
         font-size: 14px;
