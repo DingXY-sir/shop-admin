@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 16:11:31
+ * @LastEditTime: 2022-11-02 09:31:46
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { showFullScreenLoading, hideFullScreenLoading } from "./serviceLoading";
@@ -49,8 +49,6 @@ class RequestHttp {
           ElMessage.error(response.data.message);
           return Promise.reject(response);
         } else {
-          console.log(response);
-
           return response;
         }
       },

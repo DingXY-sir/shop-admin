@@ -3,14 +3,18 @@
  * @Author: DXY
  * @Date: 2022-08-22 14:16:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 21:23:16
+ * @LastEditTime: 2022-11-02 10:22:36
 -->
 <template>
   <div class="bread-container flx-center">
     <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item :to="{ path: '/home/index' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="{ path: item.path }">
-        <div class="breadcrumb-item">
+      <el-breadcrumb-item :to="{ path: '/home/index' }" v-if="breadcrumbList[0].meta.title !== '首页'">
+        <div class="breadcrumb-item flx-center">
+          <el-icon class="breadcrumb-icon"> <HomeFilled /> </el-icon>首页
+        </div>
+      </el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path">
+        <div class="breadcrumb-item flx-center">
           <el-icon class="breadcrumb-icon" v-if="item.meta.icon">
             <component :is="item.meta.icon"></component>
           </el-icon>
@@ -36,5 +40,10 @@ console.log(breadcrumbList);
 <style lang="scss" scoped>
 .bread-container {
   margin-left: 24px;
+  .breadcrumb-item {
+    .breadcrumb-icon {
+      margin-right: 4px;
+    }
+  }
 }
 </style>

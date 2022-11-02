@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 16:10:24
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 14:08:33
+ * @LastEditTime: 2022-11-02 10:05:41
 -->
 <template>
   <div class="tabs-container flx-items-center">
@@ -65,6 +65,11 @@ const handleClose = (item: TagType, index: number) => {
   .tag_item {
     margin-right: 10px;
     cursor: pointer;
+    :deep(.el-tag__content) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .el-tag--plain {
     --el-tag-border-color: var(--el-color-primary);
