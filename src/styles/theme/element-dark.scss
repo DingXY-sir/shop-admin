@@ -58,7 +58,7 @@ html.dark {
 	// --el-border-color-darker: #636466;
 	// --el-border-color-dark: #58585b;
 	// --el-border-color: #4c4d4f;
-	// --el-border-color-light: #414243;
+	--el-border-color-light: #414243;
 	// --el-border-color-lighter: #363637;
 	// --el-border-color-extra-light: #2b2b2c;
 	// --el-fill-color-darker: #424243;
@@ -86,6 +86,10 @@ html.dark {
 	// * font
 	--el-text-color-primary:#E5EAF3;
 	--el-fill-color-light: #262727;
+
+	.container{
+		border-bottom-color: var(--el-border-color-light) !important;
+	}
 
 	// * 以下为自定义暗黑模式内容
 	// login

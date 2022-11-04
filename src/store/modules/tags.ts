@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 15:17:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 21:11:09
+ * @LastEditTime: 2022-11-02 21:10:05
  */
 import { defineStore } from "pinia";
 import { TabsState, TabsMenuProps } from "../interface/index";

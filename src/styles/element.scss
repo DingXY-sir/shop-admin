@@ -80,3 +80,12 @@
 }
 
 // * table
+
+// * 内容区域全屏
+.main-maximize{
+	.el-aside,
+	.el-header,
+	.el-footer{
+		display: none !important;
+	}
+}

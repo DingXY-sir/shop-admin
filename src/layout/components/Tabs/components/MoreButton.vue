@@ -3,10 +3,10 @@
  * @Author: DXY
  * @Date: 2022-11-02 15:57:28
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 21:37:01
+ * @LastEditTime: 2022-11-04 11:01:40
 -->
 <template>
-  <el-dropdown>
+  <el-dropdown trigger="click">
     <span class="el-dropdown-link">
       <el-button size="small" type="primary">
         {{ $t("tabs.more") }}
@@ -20,7 +20,7 @@
         <el-dropdown-item @click="refresh">
           <el-icon><Refresh /></el-icon>{{ $t("tabs.refresh") }}
         </el-dropdown-item>
-        <el-dropdown-item>
+        <el-dropdown-item @click="maximize">
           <el-icon><FullScreen /></el-icon>{{ $t("tabs.maximize") }}
         </el-dropdown-item>
         <el-dropdown-item divided @click="closeCurrentTag">
@@ -38,8 +38,9 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
+import { inject, computed } from "vue";
 import { useTagsStore } from "@/store/modules/tags";
+import { useGlobalState } from "@/store/index";
 import { useRoute, useRouter } from "vue-router";
 import { HOME_RUL } from "@/config/config";
 
@@ -58,6 +59,13 @@ const closeCurrentTag = () => {
   // 防止关闭首页
   if (route.meta.isAffix) return;
   tagsStore.colseTagsList(route.path);
+};
+
+// * 内容区域全屏
+const globalState = useGlobalState();
+const themeConfig = computed(() => globalState.themeConfig);
+const maximize = () => {
+  globalState.setThemeConfig({ ...themeConfig.value, maximize: true });
 };
 
 // * 关闭其他

@@ -3,29 +3,20 @@
  * @Author: DXY
  * @Date: 2022-08-15 11:26:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-31 16:42:19
+ * @LastEditTime: 2022-11-03 15:27:09
  */
 import { Login } from "@/api/interface/index";
 import { Menu } from "@/api/interface/login";
 import http from "@/utils/request";
 import qs from "qs";
 
+// post三种请求
 export const loginApi = (params: Login.ReqLoginForm) => {
-  return http.post<Login.ResLogin>("/login", params);
+  return http.post<Login.ResLogin>("/login", params, { headers: { noLoading: true } }); // 正常post json请求 ===>Content-Type: application/json
+  return http.post<Login.ResLogin>("/login", {}, { params }); // post 请求携带 query 参数 === > ?username=admin&password=123456
+  return http.post<Login.ResLogin>("/login", qs.stringify(params)); // post 请求携带 表单 参数 === >Content-Type: application/x-www-form-urlencoded
 };
 
-export const getCode = () => {
-  return http.post("/getCode");
-};
-export const getUserAuth = (params: Login.IReqUserAuth) => {
-  return http.post<Login.IResUserAuth[]>("/meizhu-user/role/whitelist/findRoleByPhoneOrIdNuber", qs.stringify(params));
-};
-export const getRoleId = (params: Login.IRoleId) => {
-  return http.post("/meizhu-user/user/whitelist/saveRoleInfo", qs.stringify(params));
-};
-export const getLogin = (params: Login.IReqLogin) => {
-  return http.post<Login.IResGetLogin>("/userLogin", qs.stringify(params));
-};
 export const logOut = () => {
   return http.post("/userLogout");
 };
@@ -46,5 +37,5 @@ export const getLoginMock = (params: { username: string; password: string }) => 
 
 // * 获取动态菜单路由表
 export const getAuthMenuList = () => {
-  return http.post<Menu.MenuOption[]>("/menu/list");
+  return http.post<Menu.MenuOption[]>("/menu/list", {}, { headers: { noLoading: true } });
 };

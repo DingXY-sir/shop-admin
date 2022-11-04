@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 11:29:56
+ * @LastEditTime: 2022-11-03 10:02:29
  */
 import { createRouter, createWebHistory } from "vue-router";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
@@ -37,6 +37,7 @@ router.beforeEach(async (to, from, next) => {
     return next({ ...to, replace: true });
   }
 
+  // 6、放行
   next();
 });
 

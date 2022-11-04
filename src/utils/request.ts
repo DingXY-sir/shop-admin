@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 09:31:46
+ * @LastEditTime: 2022-11-03 15:05:35
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { showFullScreenLoading, hideFullScreenLoading } from "./serviceLoading";
@@ -28,6 +28,7 @@ class RequestHttp {
       (config: AxiosRequestConfig) => {
         // 在发送请求之前做些什么
         const userStore = useUserStore();
+
         // 如果当前请求不需要loading，在api服务中通过指定的第三个参数 {headers:{noLoading:true}}来取消loading
         config.headers!.noLoading || showFullScreenLoading();
         return { ...config, headers: { ...config.headers, "x-access-token": userStore.user.token } };

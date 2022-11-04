@@ -3,15 +3,15 @@
  * @Author: DXY
  * @Date: 2022-10-28 11:24:17
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-28 12:59:58
+ * @LastEditTime: 2022-11-03 09:55:23
 -->
 <template>
   <el-drawer v-model="drawerVisble" size="400px">
-    <template #title>
+    <template #header>
       <h4>列设置</h4>
     </template>
     <div class="table">
-      <el-table :data="colSetting" border="true">
+      <el-table :data="colSetting" :border="true">
         <el-table-column prop="label" align="center" label="列名"></el-table-column>
         <!-- <el-table-column prop="name" label="显示" v-slot="scope">
           <el-switch v-model="scope.row.isShow"></el-switch>

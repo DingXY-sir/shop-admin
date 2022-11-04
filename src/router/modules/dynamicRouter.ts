@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-30 17:18:40
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-01 11:30:02
+ * @LastEditTime: 2022-11-03 16:31:41
  */
 import router from "../index";
 import { AuthStore } from "@/store/modules/auth";
@@ -40,13 +40,13 @@ export const dynamicRouter = async () => {
       if (item.meta.isFull) {
         router.addRoute(item);
       } else {
+        // * 参数name:"layout", 将路由添加到当前路由下children
         router.addRoute("layout", item);
       }
     });
 
     // 4、最后添加 notFoundRouter
     router.addRoute(notFoundRouter);
-    console.log(router);
   } catch (error) {
     // 当按钮 || 菜单请求出错误时，重定向登陆页
     router.replace(LOGIN_URL);

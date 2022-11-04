@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-16 13:58:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-13 17:17:41
+ * @LastEditTime: 2022-11-03 17:18:31
  */
 import { createPinia, defineStore } from "pinia";
 import piniaPluginPersist from "pinia-plugin-persist";
@@ -19,6 +19,8 @@ export const useGlobalState = defineStore({
         primary: DEFAULT_COLOR,
         //暗黑模式
         isDark: false,
+        //当前页面是否全屏
+        maximize: false,
       },
     };
   },
