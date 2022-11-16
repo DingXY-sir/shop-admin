@@ -3,19 +3,19 @@
  * @Author: DXY
  * @Date: 2022-08-24 16:29:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-28 11:48:19
+ * @LastEditTime: 2022-11-15 15:06:33
 -->
 <template>
-  <!-- 查询 -->
+  <!-- 查询表单 card -->
   <search-form
-    :columns="searchColumns"
-    :searchParam="searchParam"
     :reset="reset"
     :search="search"
+    :columns="searchColumns"
+    :searchParam="searchParam"
     v-show="isShowSearch"
   ></search-form>
   <div class="pro-table-container card">
-    <!-- 表格头部 -->
+    <!-- 表格头部  操作按钮-->
     <div class="table_header flx-justify-between">
       <div class="header_button_lf">
         <slot name="tableHeader" :isSelected="isSelected" :selectedList="selectedList" :selectedListIds="selectedListIds"></slot>

@@ -3,9 +3,10 @@
  * @Author: DXY
  * @Date: 2022-10-10 16:44:01
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-03 17:19:42
+ * @LastEditTime: 2022-11-04 18:00:21
  */
 export interface ThemeConfig {
+  layout: string;
   primary: string;
   isDark: boolean;
   maximize: boolean;

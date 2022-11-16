@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-16 13:58:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-03 17:18:31
+ * @LastEditTime: 2022-11-04 18:00:03
  */
 import { createPinia, defineStore } from "pinia";
 import piniaPluginPersist from "pinia-plugin-persist";
@@ -15,6 +15,8 @@ export const useGlobalState = defineStore({
   state: () => {
     return {
       themeConfig: {
+        //布局
+        layout: "vertical",
         //主题
         primary: DEFAULT_COLOR,
         //暗黑模式

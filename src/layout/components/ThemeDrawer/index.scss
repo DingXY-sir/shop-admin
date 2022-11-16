@@ -1,0 +1,96 @@
+// * 布局切换
+
+.layout-box{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5px;
+  box-sizing: border-box;
+  .layout-item{
+    box-sizing: border-box;
+    width: 95px;
+    height: 67px;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px var(--el-border-color-lighter);
+    transition: all .2s;
+    margin-bottom: 6px;
+    position: relative;
+    cursor: pointer;
+    .layout-dark{
+      background-color: var(--el-color-primary);
+			border-radius: 3px;
+    }
+    .layout-light{
+      background-color: var(--el-color-primary-light-5);
+			border-radius: 3px;
+    }
+    .layout-content{
+      background-color: var(--el-color-primary-light-8);
+      border: 1px dashed  var(--el-color-primary);
+			border-radius: 3px;
+    }
+    .el-icon {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			color: var(--el-color-primary);
+			transition: all 0.2s;
+		}
+    &:hover{
+      box-shadow: 0 0 5px 1px var(--el-border-color-darker);
+    }
+  }
+  .is-active{
+    box-shadow: 0 0 0 2px var(--el-color-primary) !important; 
+  }
+  .layout-longitudinal{
+    display: flex;
+    justify-content: space-between;
+    .layout-dark{
+      width: 20%;
+    }
+    .layout-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 72%;
+      .layout-light{
+        height: 20%;
+      }
+      .layout-content{
+        height: 70%;
+      }
+    }
+  }
+  .layout-classic{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .layout-dark{
+      height: 22%;
+    }
+    .layout-container{
+      display: flex;
+      justify-content: space-between;
+      height: 70%;
+      .layout-light{
+        width: 20%;
+      }
+      .layout-content{
+        width: 70%;
+      }
+    }
+  }
+  .layout-transverse{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .layout-dark{
+      height: 22%;
+    }
+    .layout-content{
+     height: 70%;
+    }
+  }
+}
