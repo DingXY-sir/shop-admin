@@ -10,6 +10,9 @@
     padding: 0 15px;
     background-color: #191a20;
 		border-bottom: 1px solid #f1f1f1;
+    .pad_rt{
+      margin-right: 14px;
+    }
     :deep(.tool-bar-lf) {
 			color: #ffffff;
 			.el-breadcrumb__inner.is-link {

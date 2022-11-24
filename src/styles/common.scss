@@ -1,4 +1,20 @@
-
+.shop-admin{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.logo{
+	font-size: 24px;
+	color: $primary-color;
+	line-height: 55px;
+	text-align: center;
+	font-weight: bold;
+}
+.shop-admin-logo{
+	width: 40px;
+	height: 30px;
+	object-fit: contain;
+}
 /**公共样式*/
 .flx-center {
 	display: flex;

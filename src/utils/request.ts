@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-03 15:05:35
+ * @LastEditTime: 2022-11-21 13:31:46
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { showFullScreenLoading, hideFullScreenLoading } from "./serviceLoading";
@@ -57,6 +57,7 @@ class RequestHttp {
         // 超出 2xx 范围的状态码都会触发该函数。
         const { response } = error;
         //对响应超时单独判断
+        console.log(error.message.indexOf("timeout"));
 
         //对错误响应统一处理
         if (response) checkStatus(response.status);

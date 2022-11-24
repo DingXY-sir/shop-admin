@@ -3,11 +3,10 @@
  * @Author: DXY
  * @Date: 2022-08-18 14:21:52
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 16:21:30
+ * @LastEditTime: 2022-11-24 14:20:29
 -->
 <template>
   <div class="avatar-container flx-items-center">
-    <span class="user_name">{{ userName }}</span>
     <el-dropdown>
       <div class="avatar">
         <img :src="avatar" alt="" />
@@ -20,6 +19,7 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    <span class="user_name">欢迎您！{{ userName }}</span>
   </div>
 </template>
 
@@ -27,7 +27,7 @@
 import { computed } from "vue";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessageBox } from "element-plus";
-const avatar = new URL("../../../../assets/images/avatar.gif", import.meta.url).href;
+const avatar = new URL("../../../../assets/images/avatar.jpeg", import.meta.url).href;
 const userStore = useUserStore();
 const userName = computed((): string => userStore.user.userName);
 const logout = () => {
@@ -41,8 +41,8 @@ const logout = () => {
 </script>
 <style lang="scss" scoped>
 .user_name {
-  margin-right: 10px;
-  font-size: 15px;
+  margin-left: 10px;
+  font-size: 12px;
   color: #000000bf;
 }
 .avatar {

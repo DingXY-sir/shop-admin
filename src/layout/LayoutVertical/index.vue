@@ -3,13 +3,16 @@
  * @Author: DXY
  * @Date: 2022-11-14 15:02:51
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-16 10:02:08
+ * @LastEditTime: 2022-11-24 15:03:57
 -->
 <template>
   <el-container class="layout">
     <el-aside>
       <div class="menu" :style="{ width: isCollapse ? '65px' : '210px' }">
-        <div class="logo"></div>
+        <div class="shop-admin">
+          <img class="shop-admin-logo" src="@/assets/images/shop-admin-logo.png" alt="" />
+          <div class="logo" v-show="!isCollapse">Shop-Admin</div>
+        </div>
         <el-scrollbar>
           <el-menu
             :default-active="activeMenu"
@@ -19,8 +22,10 @@
             text-color="#bdbdc0"
             background-color="#191a20"
             router
+            :collapse-transition="false"
+            :unique-opened="true"
           >
-            <sub-menu :menuList="authStore.getAuthMenuList" />
+            <sub-menu :menuList="authStore.showMenuListGet" />
           </el-menu>
         </el-scrollbar>
       </div>

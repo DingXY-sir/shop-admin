@@ -3,13 +3,15 @@
  * @Author: DXY
  * @Date: 2022-08-22 11:30:02
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 17:26:22
+ * @LastEditTime: 2022-11-21 13:07:28
 -->
 <template>
   <div class="view-container">
     <pro-table ref="tableRef" :initParams="initParams" :requestApi="getAllList" :columns="tableColumns" :border="border">
       <template #tableHeader="scope">
-        <el-button type="primary" :icon="CirclePlus" @click="handleCreate('新增')">新增用户</el-button>
+        <el-button type="primary" :icon="CirclePlus" @click="handleCreate('新增')" v-hasRole="route.meta.roles"
+          >新增用户</el-button
+        >
         <el-button type="primary" :icon="Upload" plain @click="batchCreate">批量添加用户</el-button>
         <el-button type="primary" :icon="Download" plain @click="handleExport">导出用户数据</el-button>
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelected(scope.selectedListIds)">
@@ -35,6 +37,11 @@ import { ref, reactive, onMounted } from "vue";
 import { Delete, CirclePlus, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue";
 import { getAllList, getUserStatus } from "@/api/modules/user";
 import { genderType } from "@/utils/serverDict";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+console.log(route.meta.roles);
+
 // * 查询表单参数
 const initParams = reactive({
   type: 1,

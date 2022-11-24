@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-22 14:16:03
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 10:22:36
+ * @LastEditTime: 2022-11-20 14:18:16
 -->
 <template>
   <div class="bread-container flx-center">
@@ -31,10 +31,8 @@ import { AuthStore } from "@/store/modules/auth";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-console.log(route);
 const authStore = AuthStore();
-const breadcrumbList = computed(() => authStore.getShowMenuList[route.path]);
-console.log(authStore.getShowMenuList);
+const breadcrumbList = computed(() => authStore.breadcrumbListGet[route.path]);
 console.log(breadcrumbList);
 </script>
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 17:08:10
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-09 15:54:13
+ * @LastEditTime: 2022-11-16 15:31:43
 -->
 <template>
   <div class="viev-container">
@@ -120,7 +120,7 @@ const tableData = ref<Array<TableData>>([
   },
 ]);
 //表头字段以及配置
-const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
+const tableColumns = ref<Partial<Form.Column>[]>([
   { type: "selection", width: 80, fixed: "left" },
   // { type: "expand", label: "Expand", width: 100 },
   // { prop: "username", label: "用户姓名", width: 130, search: true, renderHeader },

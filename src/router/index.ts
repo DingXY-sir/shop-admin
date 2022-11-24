@@ -3,9 +3,9 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-03 10:02:29
+ * @LastEditTime: 2022-11-16 15:20:35
  */
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 import { dynamicRouter } from "./modules/dynamicRouter";
 import { start, end } from "@/utils/nprogress";
@@ -14,8 +14,9 @@ import { useUserStore } from "@/store/modules/user";
 import { AuthStore } from "@/store/modules/auth";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [...staticRouter, ...errorRouter],
+  strict: false,
 });
 router.beforeEach(async (to, from, next) => {
   // 1、nprogress 加载开始

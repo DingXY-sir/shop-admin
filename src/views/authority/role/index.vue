@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-19 14:23:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-20 16:15:35
+ * @LastEditTime: 2022-11-16 15:31:34
 -->
 
 <template>
@@ -71,7 +71,7 @@ const getSearchList = ref([
   { searchType: "select", label: "角色状态", prop: "status", isShow: true },
 ]);
 //表单内容
-const tableColumns = ref<Partial<Form.SearchFormItem>[]>([
+const tableColumns = ref<Partial<Form.Column>[]>([
   { type: "selection", width: 80, fixed: "left" },
   {
     prop: "id",

@@ -3,13 +3,14 @@
  * @Author: DXY
  * @Date: 2022-11-15 11:50:28
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-16 10:11:09
+ * @LastEditTime: 2022-11-24 15:34:21
 -->
 <template>
   <el-container class="layout">
     <el-header>
-      <div class="header-lf">
-        <div class="logo"></div>
+      <div class="header-lf flx-center">
+        <img class="shop-admin-logo" src="@/assets/images/shop-admin-logo.png" alt="" />
+        <div class="logo pad_rt">Shop-Admin</div>
         <tool-barLeft />
       </div>
       <tool-barRight />
@@ -26,7 +27,7 @@
               text-color="#303133"
               router
             >
-              <sub-menu :menuList="authStore.getAuthMenuList" />
+              <sub-menu :menuList="authStore.showMenuListGet" />
             </el-menu>
           </el-scrollbar>
         </div>

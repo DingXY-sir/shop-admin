@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-10-04 21:19:32
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-02 09:39:46
+ * @LastEditTime: 2022-11-20 15:01:04
  */
 
 /**
@@ -65,6 +65,32 @@ export function getFlatArr(menuList: Menu.MenuOption[]) {
     if (current.children) flatArr = [...flatArr, ...getFlatArr(current.children)];
     return flatArr;
   }, []);
+}
+
+/**
+ *  @description 获取菜单权限
+ *  @param {Array} menuList
+ *  @return Array
+ */
+
+export function getShowMenuList(menuList: Menu.MenuOption[]) {
+  return menuList.filter((item: Menu.MenuOption) => {
+    item.children?.length && (item.children = getShowMenuList(item.children));
+    return !item.meta.isHide;
+  });
+}
+/**
+ * @description 使用递归 获取需要缓存的路由
+ * @param {Array} menuList
+ * @param {Array} keepAliveArr 需要缓存的路由
+ * @return Array
+ */
+export function getKeepAliveRouterName(menuList: Menu.MenuOption[], keepAliveArr: string[]) {
+  menuList.forEach((item: Menu.MenuOption) => {
+    item.meta.isKeepAlive && item.name && keepAliveArr.push(item.name);
+    item.children?.length && getKeepAliveRouterName(item.children, keepAliveArr);
+    return keepAliveArr;
+  });
 }
 
 /**

@@ -3,15 +3,17 @@
  * @Author: DXY
  * @Date: 2022-10-08 14:18:41
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-09 11:30:41
+ * @LastEditTime: 2022-11-21 10:23:25
  */
 import { App } from "vue";
 import waterMarker from "./modules/waterMaker";
 import debounce from "./modules/debounce";
+import hasRole from "./modules/hasRole";
 
 const direcitvesList = {
   debounce,
   waterMarker,
+  hasRole,
 };
 
 const directives = {

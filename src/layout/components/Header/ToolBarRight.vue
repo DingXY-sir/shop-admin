@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-11-15 13:42:30
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-15 17:54:59
+ * @LastEditTime: 2022-11-24 14:19:07
 -->
 <template>
   <div class="fn flx-justify-around tool-bar-ri">
@@ -20,6 +20,8 @@ import Avatar from "./components/Avatar.vue";
 </script>
 <style lang="scss" scoped>
 .fn {
-  width: 200px;
+  div {
+    margin-left: 10px;
+  }
 }
 </style>

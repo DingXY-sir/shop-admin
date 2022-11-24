@@ -3,7 +3,7 @@
  * @Author: DXY
  * @Date: 2022-08-18 15:23:35
  * @LastEditors: DXY
- * @LastEditTime: 2022-10-17 16:21:51
+ * @LastEditTime: 2022-11-24 14:01:53
 -->
 <template>
   <div class="fullscreen-container flx-items-center">
@@ -19,7 +19,7 @@ const { isFullscreen, toggle } = useFullscreen();
 </script>
 <style lang="scss" scoped>
 .icon_style {
-  font-size: 24px;
+  font-size: 22px;
   color: rgb(0 0 0 / 75%);
   cursor: pointer;
 }
