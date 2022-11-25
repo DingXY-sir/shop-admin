@@ -3,14 +3,17 @@
  * @Author: DXY
  * @Date: 2022-08-15 10:19:49
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-21 13:31:46
+ * @LastEditTime: 2022-11-25 18:53:24
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosCancel } from "@/api/helper/axiosCancel";
 import { showFullScreenLoading, hideFullScreenLoading } from "./serviceLoading";
 import { ResultData } from "@/api/interface/index";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessage } from "element-plus";
 import { checkStatus } from "@/api/helper/checkStatus";
+
+const axiosCancel = new AxiosCancel();
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 6000,
@@ -28,7 +31,8 @@ class RequestHttp {
       (config: AxiosRequestConfig) => {
         // 在发送请求之前做些什么
         const userStore = useUserStore();
-
+        // *将当前请求添加pending中
+        axiosCancel.addPending(config);
         // 如果当前请求不需要loading，在api服务中通过指定的第三个参数 {headers:{noLoading:true}}来取消loading
         config.headers!.noLoading || showFullScreenLoading();
         return { ...config, headers: { ...config.headers, "x-access-token": userStore.user.token } };
@@ -44,7 +48,8 @@ class RequestHttp {
       (response: AxiosResponse) => {
         // 2xx 范围内的状态码都会触发该函数。
         // 对响应数据做点什么
-        // 取消loading
+        // * 移除当前请求 并且 取消loading
+        axiosCancel.removePending(response.config);
         hideFullScreenLoading();
         if (response.data.status && response.data.status !== "200") {
           ElMessage.error(response.data.message);

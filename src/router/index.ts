@@ -3,15 +3,18 @@
  * @Author: DXY
  * @Date: 2022-08-12 13:42:44
  * @LastEditors: DXY
- * @LastEditTime: 2022-11-16 15:20:35
+ * @LastEditTime: 2022-11-25 20:49:51
  */
 import { createRouter, createWebHashHistory } from "vue-router";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 import { dynamicRouter } from "./modules/dynamicRouter";
+import { AxiosCancel } from "@/api/helper/axiosCancel";
 import { start, end } from "@/utils/nprogress";
 import { LOGIN_URL } from "@/config/config";
 import { useUserStore } from "@/store/modules/user";
 import { AuthStore } from "@/store/modules/auth";
+
+const axiosCancel = new AxiosCancel();
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -23,6 +26,7 @@ router.beforeEach(async (to, from, next) => {
   start();
 
   // 2、清空所有请求
+  axiosCancel.removeAllPending();
 
   // 3、当前跳转登陆页，直接放行
   if (to.path === LOGIN_URL) return next();
